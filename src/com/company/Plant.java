@@ -1,6 +1,6 @@
 package com.company;
 
-abstract class Plant {
+abstract class Plant implements Serialisable{
 	private int Refresh_time;
 	private final int dist_house;
 	private int hp;
@@ -41,12 +41,12 @@ abstract class Plant {
 		this.dist_house = j;
 	}
 }
-abstract class DefensivePlants extends Plant{
+abstract class DefensivePlants extends Plant implements Serialisable{
 	DefensivePlants(int i, int j){
 		super(i,j);
 	}
 }
-class CherryBomb extends DefensivePlants {
+class CherryBomb extends DefensivePlants implements Serialisable{
 	CherryBomb(int i, int j) {
 		super(i,j);
 		//destroy surrounding zombies
@@ -54,7 +54,7 @@ class CherryBomb extends DefensivePlants {
 	}
 }
 
-class PotatoMine extends DefensivePlants {
+class PotatoMine extends DefensivePlants implements Serialisable{
 	PotatoMine(int i, int j){
 		super(i,j);
 	}

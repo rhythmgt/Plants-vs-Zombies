@@ -39,11 +39,15 @@ class GameStarter {
     }
 }
 
-class Game implements Serializable {
+interface Serialisable{
+
+}
+
+class Game implements Serialisable {
     //private int currentLevel ;
     private final String name ;
     private Level ongoingLevel ;
-    private GameStarter myStarter;
+    //transient private GameStarter myStarter;
 
     public Level getOngoingLevel() {
         return ongoingLevel;
@@ -54,9 +58,9 @@ class Game implements Serializable {
     public String getName() {
         return name;
     }
-    public void setmyStarter(GameStarter gm){
+    /*public void setmyStarter(GameStarter gm){
         myStarter = gm;
-    }
+    }*/
     /*public void setName(String name) {
         this.name = name;
     }*/
@@ -78,7 +82,7 @@ class Game implements Serializable {
     public void startGame(){}
 }
 
-abstract class Level implements Serializable{
+abstract class Level implements Serialisable{
     private final boolean[] availablePlants ;
     private final ArrayList<Zombie> Zombie;
     private final Courtyard myCourtyard ;
@@ -128,7 +132,7 @@ abstract class Level implements Serializable{
     public void useLawnMover() {}
 
 
-    protected class Courtyard {
+    protected class Courtyard implements Serialisable{
         private final Plant[][] plants ;
         private final Boolean[] lawnMovers ;
         private final Zombie[][][] zombies;
@@ -156,27 +160,27 @@ abstract class Level implements Serializable{
     }
 }
 
-class Level1 extends Level{
+class Level1 extends Level implements Serialisable{
     Level1(){
         super();
     }
 }
-class Level2 extends Level{
+class Level2 extends Level implements Serialisable{
     Level2(){
         super();
     }
 }
-class Level3 extends Level{
+class Level3 extends Level implements Serialisable{
     Level3(){
         super();
     }
 }
-class Level4 extends Level{
+class Level4 extends Level implements Serialisable{
     Level4(){
         super();
     }
 }
-class Level5 extends Level{
+class Level5 extends Level implements Serialisable{
     Level5(){
         super();
     }

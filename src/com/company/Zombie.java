@@ -1,6 +1,6 @@
 package com.company;
 
-abstract class Zombie {
+abstract class Zombie implements Serialisable{
 	private int hp;
 	private int status;
 	private final int targetRow;
@@ -40,12 +40,12 @@ abstract class Zombie {
 	}
 }
 
-class Zombie1 extends Zombie{
+class Zombie1 extends Zombie implements Serialisable{
 	Zombie1(int i){super(i);}
 }
-class FlagZombie extends Zombie{
+class FlagZombie extends Zombie implements Serialisable{
 	FlagZombie(int i){super(i);}
 }
-class ConeHeadZombie extends Zombie{
+class ConeHeadZombie extends Zombie implements Serialisable{
 	ConeHeadZombie(int i){super(i);}
 }
