@@ -18,12 +18,12 @@
          </font>
 
       </Button>
-      <Button layoutX="48.0" layoutY="130.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" text="RESTART LEVEL" textFill="#148a51">
+      <Button layoutX="48.0" layoutY="130.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" text="RESTART LEVEL" textFill="#148a51" stylesheets="@effects.css" onMouseClicked="#restartLevel">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="48.0" layoutY="226.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" text="EXIT" textFill="#148a51" onMouseClicked="#exitGame">
+      <Button layoutX="48.0" layoutY="226.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" text="EXIT" textFill="#148a51" onMouseClicked="#exitGame" stylesheets="@effects.css">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

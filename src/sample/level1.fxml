@@ -44,12 +44,12 @@
             <Button id="b_08" mnemonicParsing="false" opacity="0.0" prefHeight="128.0" prefWidth="104.0" text="Button" GridPane.columnIndex="8" />
          </children>
       </GridPane>
-      <ImageView fitHeight="60.0" fitWidth="91.0" layoutX="256.0" layoutY="330.0">
+      <ImageView fx:id="@landMover"  fitHeight="60.0" fitWidth="91.0" layoutX="256.0" layoutY="330.0">
          <image>
             <Image url="@../images/landMower.png" />
          </image>
       </ImageView>
-      <Button id="Pause" layoutX="69.0" layoutY="519.0" mnemonicParsing="false" onMouseClicked="#pauseGame" prefHeight="98.0" prefWidth="91.0" style="-fx-background-radius: 400;" text="Pause">
+      <Button fx:id="PauseBtn" layoutX="69.0" layoutY="519.0" mnemonicParsing="false" onMouseClicked="#pauseGame" prefHeight="98.0" prefWidth="91.0" style="-fx-background-radius: 400;" text="Pause">
          <font>
             <Font size="20.0" />
          </font></Button>
