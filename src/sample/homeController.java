@@ -18,5 +18,6 @@ public class homeController {
 		//myStage.setScene(new Scene(root2, 300, 300));
 		//myStage.show();
 		((Node)actionEvent.getSource()).getScene().setRoot(root2);
+		root2.getStylesheets().add(getClass().getResource("buttonStyle2.css").toString());
 	}
 }

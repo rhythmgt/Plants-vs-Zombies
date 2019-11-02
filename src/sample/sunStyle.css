@@ -1,0 +1,11 @@
+.button {
+    /*
+    -fx-graphic: url(sample.images/log2.png);
+    -fx-graphic-size:16px 16px;
+    */
+    -fx-background-color: TRANSPARENT;
+    -fx-background-image: url(/sample/images/sun.png);
+    -fx-background-size: cover;
+    -fx-background-position: 0 0 ;
+    -fx-background-repeat: no-repeat ;
+}

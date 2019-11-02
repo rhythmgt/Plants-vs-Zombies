@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="316.0" prefWidth="238.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.menuController">
+   <children>
+      <VBox depthTest="ENABLE" layoutX="-129.0" layoutY="33.0" prefHeight="230.0" prefWidth="143.0" />
+      <Button depthTest="ENABLE" layoutX="48.0" layoutY="33.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="BACK TO GAME" textAlignment="JUSTIFY" textFill="#347c2c" onMouseClicked="#resumeGame">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+
+      </Button>
+      <Button layoutX="48.0" layoutY="130.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" text="RESTART LEVEL" textFill="#148a51" stylesheets="@effects.css" onMouseClicked="#restartLevel">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="48.0" layoutY="226.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" text="EXIT" textFill="#148a51" onMouseClicked="#exitGame" stylesheets="@effects.css">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>
