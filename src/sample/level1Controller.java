@@ -27,7 +27,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class level1Controller implements Initializable {
+public class level1Controller {
 
 	public javafx.scene.image.ImageView LandMover;
 	public AnchorPane menu;
@@ -35,11 +35,9 @@ public class level1Controller implements Initializable {
 	public Label sunCount;
 	public ImageView backgroundBoard;
 	public ImageView peaCard;
-	public javafx.scene.image.ImageView peaplant;
 	public double startDragX , startDragY;
+	public ImageView peashooter;
 
-	@FXML
-	public javafx.scene.image.ImageView peashooter;
 	@FXML
 	private Button PauseBtn;
 	@FXML
@@ -142,19 +140,15 @@ public class level1Controller implements Initializable {
 		System.out.println(mouseEvent.getSceneX() + " " + mouseEvent.getSceneY());}
 
 	public void mouseReleased(MouseEvent mouseEvent) throws InterruptedException {
-		//peashooter.setVisible(false);
 		MouseEvent e = mouseEvent ;
-		System.out.println("here");
-		ImageView player = peashooter ;
-		/*ImageView player = new ImageView();
+		ImageView player = new ImageView();
 		player.setImage(peashooter.getImage());
 		player.setFitWidth(77.0);
 		player.setFitHeight(77.0);
 		player.setLayoutX(971.0);
 		player.setLayoutY(13.0);
 		player.setVisible(true);
-		Thread.sleep(200);*/
-		peashooter.setVisible(true);
+		myParent.getChildren().add(player);
 		player.setTranslateX(e.getSceneX() - startDragX);
 		player.setTranslateY(e.getSceneY() - startDragY);
 		System.out.println("here "+e.getSceneX() + " " + e.getSceneY());
@@ -199,10 +193,5 @@ public class level1Controller implements Initializable {
 		}
 		player.setOnMousePressed(null);
 		player.setOnMouseReleased(null);
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		peashooter.setVisible(false);
 	}
 }
