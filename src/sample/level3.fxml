@@ -16,7 +16,7 @@
     <children>
         <ImageView fitHeight="720.0" fitWidth="1280.0">
          <image>
-            <Image url="@images/level1bg.jpg" />
+            <Image url="@images/level3bg.jpg" />
          </image>
         </ImageView>
         <GridPane fx:id="myGrid" layoutX="313.0" layoutY="345.0" prefHeight="134.0" prefWidth="924.0">
@@ -46,7 +46,7 @@
             <Button fx:id="b_00" mnemonicParsing="false" onMouseClicked="#plantIfAvailable" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="0" />
          </children>
         </GridPane>
-        <ImageView fx:id="LandMover" fitHeight="74.0" fitWidth="118.0" layoutX="223.0" layoutY="325.0">
+        <ImageView fx:id="LandMover" fitHeight="68.0" fitWidth="91.0" layoutX="238.0" layoutY="328.0">
          <image>
             <Image url="@images/landMower.png" />
          </image>
@@ -75,13 +75,7 @@
                              <Font name="System Bold" size="15.0" />
                          </font>
                      </Button>
-                   <Button mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="SAVE AND EXIT" textFill="#148a51">
-                       <font>
-                           <Font name="System Bold" size="15.0" />
-                       </font>
-                   </Button>
-
-                   <Button mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="68.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="EXIT WITHOUT SAVING" textFill="#148a51">
+                     <Button mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="68.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="EXIT" textFill="#148a51">
                          <font>
                              <Font name="System Bold" size="16.0" />
                          </font>
@@ -125,6 +119,26 @@
       <ImageView fx:id="khopdi" fitHeight="25.0" fitWidth="28.0" layoutX="427.0" layoutY="54.0" style="-fx-background-color: BLACK">
          <image>
             <Image url="@images/boards/skull.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="LandMover2" fitHeight="68.0" fitWidth="91.0" layoutX="238.0" layoutY="94.0">
+         <image>
+            <Image url="@images/landMower.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="LandMover21" fitHeight="68.0" fitWidth="91.0" layoutX="238.0" layoutY="224.0">
+         <image>
+            <Image url="@images/landMower.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="LandMover211" fitHeight="68.0" fitWidth="91.0" layoutX="238.0" layoutY="445.0">
+         <image>
+            <Image url="@images/landMower.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="LandMover2111" fitHeight="68.0" fitWidth="91.0" layoutX="231.0" layoutY="574.0">
+         <image>
+            <Image url="@images/landMower.png" />
          </image>
       </ImageView>
     </children>

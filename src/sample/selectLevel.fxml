@@ -33,7 +33,7 @@
                   <Image url="@images/level.png" />
                </image>
             </ImageView>
-            <Button layoutX="27.0" layoutY="10.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="81.0" text="LEVEL 5" >
+            <Button layoutX="27.0" layoutY="10.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="81.0" text="LEVEL 5" onMouseClicked="#startLevel3">
                <font>
                   <Font size="16.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Image url="@images/level.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="12.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="81.0" text="LEVEL 4" >
+            <Button layoutX="25.0" layoutY="12.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="81.0" text="LEVEL 4" onMouseClicked="#startLevel3">
                <font>
                   <Font size="16.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Image url="@images/level.png" />
                </image>
             </ImageView>
-            <Button layoutX="60.0" layoutY="8.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="81.0" text="LEVEL 2" >
+            <Button layoutX="60.0" layoutY="8.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="81.0" text="LEVEL 2" onMouseClicked="#startLevel3">
                <font>
                   <Font size="16.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Image url="@images/level.png" />
                </image>
             </ImageView>
-            <Button layoutX="89.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#startLevel1" prefHeight="93.0" prefWidth="81.0" text="LEVEL 3" >
+            <Button layoutX="89.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#startLevel3" prefHeight="93.0" prefWidth="81.0" text="LEVEL 3" >
                <font>
                   <Font size="16.0" />
                </font>
