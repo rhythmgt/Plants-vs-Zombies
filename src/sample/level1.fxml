@@ -21,30 +21,29 @@
         </ImageView>
         <GridPane layoutX="313.0" layoutY="345.0" prefHeight="134.0" prefWidth="924.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="103.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="110.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="105.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="89.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="104.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="107.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="111.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="96.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="106.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="101.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="2.0" prefWidth="129.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="101.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="107.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="2.0" prefWidth="102.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" opacity="0.0" prefHeight="135.0" prefWidth="96.0" />
-            <Button id="b_07" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="7" />
-            <Button id="b_06" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="6" />
-            <Button id="b_05" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="5" />
-            <Button id="b_03" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="3" />
-            <Button id="b_04" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="4" />
-            <Button id="b_02" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="2" />
-            <Button id="b_01" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="1" />
-            <Button id="b_00" mnemonicParsing="false" opacity="0.0" prefHeight="128.0" prefWidth="104.0" />
-            <Button id="b_08" mnemonicParsing="false" opacity="0.0" prefHeight="128.0" prefWidth="104.0" text="Button" GridPane.columnIndex="8" />
+            <Button fx:id="b_08" mnemonicParsing="false" opacity="0.0" prefHeight="128.0" prefWidth="104.0" text="Button" GridPane.columnIndex="8" onMouseClicked="#plantIfAvailable"/>
+            <Button fx:id="b_07" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="7" onMouseClicked="#plantIfAvailable"/>
+            <Button fx:id="b_06" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="6" onMouseClicked="#plantIfAvailable"/>
+            <Button fx:id="b_05" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="5" onMouseClicked="#plantIfAvailable"/>
+            <Button fx:id="b_04" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="4" onMouseClicked="#plantIfAvailable"/>
+            <Button fx:id="b_03" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="3" onMouseClicked="#plantIfAvailable"/>
+            <Button fx:id="b_02" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="2" onMouseClicked="#plantIfAvailable"/>
+            <Button fx:id="b_01" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="1" onMouseClicked="#plantIfAvailable"/>
+            <Button fx:id="b_00" mnemonicParsing="false" opacity="0.0" prefHeight="126.0" prefWidth="103.0" text="Button" GridPane.columnIndex="0" onMouseClicked="#plantIfAvailable"/>
          </children>
         </GridPane>
         <ImageView fx:id="LandMover" fitHeight="60.0" fitWidth="91.0" layoutX="256.0" layoutY="330.0">
@@ -108,17 +107,17 @@
                <Image url="@images/boards/b1.jpg" />
            </image>
         </ImageView>
-        <ImageView fx:id="peaCard" fitHeight="92.0" fitWidth="100.0" layoutX="463.0" layoutY="55.0" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased">
+        <ImageView fx:id="peaCard" fitHeight="92.0" fitWidth="100.0" layoutX="463.0" layoutY="55.0" onMousePressed="#plantPea" onMouseReleased="#mouseReleased">
            <image>
                <Image url="@images/cards/card_peashooter.png" />
            </image>
         </ImageView>
-        <ImageView fx:id="sunflowerCard" fitHeight="92.0" fitWidth="100.0" layoutX="563.0" layoutY="55.0">
+        <ImageView fx:id="sunflowerCard" fitHeight="92.0" fitWidth="100.0" layoutX="563.0" layoutY="55.0" onMouseClicked="#plantsunFlower">
            <image>
                <Image url="@images/cards/card_sunflower.png" />
            </image>
         </ImageView>
-        <ImageView fx:id="peashooter" visible="false" fitHeight="92.0" fitWidth="100.0" layoutX="563.0" layoutY="55.0">
+        <ImageView fx:id="peashooter" fitHeight="92.0" fitWidth="100.0" layoutX="563.0" layoutY="55.0" visible="false">
            <image>
                <Image url="@images/plants/peashooter.gif" />
            </image>

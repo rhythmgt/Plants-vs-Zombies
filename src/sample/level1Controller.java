@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-import java.awt.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +38,8 @@ public class level1Controller {
 	public ImageView peaCard;
 	public double startDragX , startDragY;
 	public ImageView peashooter;
+
+	private String selectedImage;
 
 	@FXML
 	private Button PauseBtn;
@@ -194,4 +197,30 @@ public class level1Controller {
 		player.setOnMousePressed(null);
 		player.setOnMouseReleased(null);
 	}
+
+
+	public void plantIfAvailable(MouseEvent mouseEvent){
+		double x = mouseEvent.getSceneX();
+		double y = mouseEvent.getSceneY();
+
+
+		if (selectedImage!=null){
+			Image myimg = new Image(selectedImage);
+			ImageView img = new ImageView();
+			img.setImage(myimg);
+			img.setLayoutX(x);
+			img.setLayoutY(y);
+			myParent.getChildren().add(img);
+			selectedImage = null;
+
+		}
+	}
+
+	public void plantPea(MouseEvent mouseEvent) {
+		selectedImage = "sample/images/plants/peashooter.gif";
+	}
+	public void plantsunFlower(MouseEvent mouseEvent) {
+		selectedImage = "sample/images/plants/sunflower.gif";
+	}
+
 }
