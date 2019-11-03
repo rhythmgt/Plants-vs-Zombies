@@ -1,9 +1,8 @@
 package sample;
 
 import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,15 +21,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
 
 
-public class level1Controller {
+public class level1Controller implements  Initializable {
 
 	public javafx.scene.image.ImageView LandMover;
 	public AnchorPane menu;
@@ -41,33 +38,48 @@ public class level1Controller {
 	public ImageView peaCard;
 	public double startDragX , startDragY;
 	public ImageView peashooter;
-	public ImageView khopdi;
+	public ArrayList<PathTransition> animation ;
+	public ImageView player;
+	public ImageView peaball;
+	public ImageView zombie;
+	public ImageView sunflower;
+	public Timer tZombie;
+	public Timer tSun ;
+    public ImageView khopdi;
+    public ImageView timer;
 
-	public Button b_08;
-	public GridPane myGrid;
-	public Button b_00;
+    public void startMeter(){
 
-	private String selectedImage;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                double xnot = khopdi.getX();
+                double ynot = khopdi.getY();
+                PathElement[] path = {
+                        new MoveTo(xnot,ynot+10),
+                        new LineTo(xnot-180, ynot+10),
+                };
 
-	@FXML
+                Path road = new Path();
+                road.getElements().addAll(path);
+                PathTransition anim2 = new PathTransition();
+                anim2.setNode(khopdi);
+                anim2.setPath(road);
+                anim2.setDuration(new Duration(60000));
+                animation.add(anim2);
+                anim2.play();
+            }
+        });
+
+
+    }
+
+    @FXML
 	private Button PauseBtn;
 	@FXML
 	public void pauseGame(MouseEvent mouseEvent) throws IOException {
-		/*Stage primaryStage2 = new Stage();
-
-		PauseBtn.setDisable(true);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
-		Parent root2 = loader.load();
-
-		primaryStage2.initStyle(StageStyle.UNDECORATED);
-		primaryStage2.setScene(new Scene(root2, 300, 300));
-
-
-		((menuController) loader.getController()).setCallingLevel((Stage) ((Node)mouseEvent.getSource()).getScene().getWindow());
-		((menuController) loader.getController()).setCallingButton(PauseBtn);
-		primaryStage2.show();*/
+		pauser(mouseEvent);
 		menu.setVisible(true);
-		menu.toFront();
 		PauseBtn.setDisable(true);
 	}
 
@@ -76,7 +88,6 @@ public class level1Controller {
 		PathElement[] path = {
 				new MoveTo(256,65),
 				new LineTo(800, 65),
-				//new ClosePath(),
 		};
 		Path road = new Path();
 		road.getElements().addAll(path);
@@ -84,23 +95,16 @@ public class level1Controller {
 		anim.setNode(LandMover);
 		anim.setPath(road);
 		anim.setDuration(new Duration(5000));
-		//anim.setCycleCount(1);
-
-		Animation.Status status = anim.getStatus();
-
 		anim.play();
 	}
 
-
 	public void resumeGame(MouseEvent mouseEvent) {
+		pauser(mouseEvent);
 		PauseBtn.setDisable(false);
 		menu.setVisible(false);
-
 	}
 
 	public void exitGame(MouseEvent mouseEvent) {
-
-
 		((Stage) ((Node)mouseEvent.getSource()).getScene().getWindow()).close();
 	}
 
@@ -108,9 +112,8 @@ public class level1Controller {
 		((Node)mouseEvent.getSource()).getScene().setRoot((Parent) FXMLLoader.load(getClass().getResource("level1.fxml")));
 	}
 
-	// this function is called by our additional button add this in initialize and remove the button
-	public void addSun(MouseEvent mouseEvent) throws InterruptedException {
-		start();
+	public void addSun(MouseEvent mouseEvent){
+		addSun(570);
 	}
 
 	public void addSun(double x){
@@ -118,6 +121,7 @@ public class level1Controller {
 		sunToken.setOnMouseClicked(event -> {
 			changeSunValue(100);
 			sunToken.setVisible(false);
+			myParent.getChildren().remove(sunToken);
 		});
 		double r=25;
 		sunToken.setShape(new Circle(r));
@@ -147,145 +151,260 @@ public class level1Controller {
 		sunCount.setText(Integer.toString(i));
 	}
 
-	public void mousePressed(MouseEvent mouseEvent) {
+	public void mousePressedpea(MouseEvent mouseEvent) {
 		startDragX = mouseEvent.getSceneX();
 		startDragY = mouseEvent.getSceneY();
-		System.out.println(mouseEvent.getSceneX() + " " + mouseEvent.getSceneY());}
-
-	public void mouseReleased(MouseEvent mouseEvent) throws InterruptedException {
-		MouseEvent e = mouseEvent ;
-		ImageView player = new ImageView();
+		player= new ImageView();
 		player.setImage(peashooter.getImage());
 		player.setFitWidth(77.0);
 		player.setFitHeight(77.0);
-		player.setLayoutX(971.0);
-		player.setLayoutY(13.0);
 		player.setVisible(true);
 		myParent.getChildren().add(player);
-		player.setTranslateX(e.getSceneX() - startDragX);
-		player.setTranslateY(e.getSceneY() - startDragY);
-		System.out.println("here "+e.getSceneX() + " " + e.getSceneY());
-		if (e.getSceneX() > 232 && e.getSceneX() < 232 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
-			player.setTranslateX(275 - startDragX);
-			player.setTranslateY(60 - startDragY);
-			System.out.println(e.getSceneX() + " " + e.getSceneY());
-		} else if (e.getSceneX() > 232 + 65 && e.getSceneX() < 232 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
-			player.setTranslateX(275 + 65 - startDragX);
-			player.setTranslateY(60 - startDragY);
-			System.out.println(e.getSceneX() + " " + e.getSceneY());
-		} else if (e.getSceneX() > 232 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
-			player.setTranslateX(275 + 65 + 65 - startDragX);
-			player.setTranslateY(60 - startDragY);
-			player.setOnMousePressed(null);
-			player.setOnMouseDragged(null);
-			System.out.println(e.getSceneX() + " " + e.getSceneY());
-		} else if (e.getSceneX() > 232 + 65 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
-			player.setTranslateX(275 + 65 + 65 + 65 - startDragX);
-			player.setTranslateY(60 - startDragY);
-			System.out.println(e.getSceneX() + " " + e.getSceneY());
-		} else if (e.getSceneX() > 240 + 65 + 65 + 65 + 65 && e.getSceneX() < 240 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
-			player.setTranslateX(283 + 65 + 65 + 65 + 65 - startDragX);
-			player.setTranslateY(60 - startDragY);
-			System.out.println(e.getSceneX() + " " + e.getSceneY());
-		} else if (e.getSceneX() > 240 + 65 + 65 + 65 + 65 + 65 && e.getSceneX() < 240 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
-			player.setTranslateX(275 + 65 + 65 + 65 + 65 + 65 - startDragX);
-			player.setTranslateY(60 - startDragY);
-			System.out.println(e.getSceneX() + " " + e.getSceneY());
-		} else if (e.getSceneX() > 232 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
-			player.setTranslateX(275 + 65 + 65 + 65 + 65 + 65 + 65 - startDragX);
-			player.setTranslateY(60 - startDragY);
-			System.out.println(e.getSceneX() + " " + e.getSceneY());
-		} else if (e.getSceneX() > 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
-			player.setTranslateX(275 + 65 + 65 + 65 + 65 + 65 + 65 + 65 - startDragX);
-			player.setTranslateY(60 - startDragY);
-			System.out.println(e.getSceneX() + " " + e.getSceneY());
-		} else if (e.getSceneX() > 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
-			player.setTranslateX(275 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 - startDragX);
-			player.setTranslateY(60 - startDragY);
-			System.out.println(e.getSceneX() + " " + e.getSceneY());
-		}
-		player.setOnMousePressed(null);
-		player.setOnMouseReleased(null);
+		player.setLayoutX(mouseEvent.getSceneX()-38.5);
+		player.setLayoutY(mouseEvent.getSceneY()-77);
 	}
 
-
-	public void plantIfAvailable(MouseEvent mouseEvent){
+	public void mouseReleased(MouseEvent mouseEvent) throws InterruptedException {
 		double x = mouseEvent.getSceneX();
 		double y = mouseEvent.getSceneY();
+		if(x>326.0 && x<1238.0 && y>360.0 && y<463.0) {
+			if(player.getImage()==sunflower.getImage()){
+				sunflowerSun(x,y);
+			}
+			else {
+				x = mouseEvent.getSceneX() + 38.5;
+				y = mouseEvent.getSceneY() - 38.5;
+				ImageView peatrans = new ImageView();
+				peatrans.setImage(peaball.getImage());
+				peatrans.setVisible(true);
+				peatrans.setFitHeight(21.0);
+				peatrans.setFitWidth(21.0);
+				peatrans.setLayoutX(x - 10.5);
+				peatrans.setLayoutY(y - 21.0);
+				myParent.getChildren().add(peatrans);
+				PathElement[] path = {
+						new MoveTo(peatrans.getX(), peatrans.getY()),
+						new LineTo(peatrans.getX() + 1000, peatrans.getY()),
+				};
+				Path road = new Path();
+				road.getElements().addAll(path);
+				PathTransition anim = new PathTransition();
+				animation.add(anim);
+				anim.setNode(peatrans);
+				anim.setPath(road);
+				anim.setDuration(new Duration(4000));
+				anim.setCycleCount(100);
+				anim.play();
+			}
+		}
+		else
+			myParent.getChildren().remove(player);
+	}
+
+	private void sunflowerSun(double x , double y) {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				Button sunToken = new Button();
+				sunToken.setOnMouseClicked(event -> {
+					changeSunValue(100);
+					sunToken.setVisible(false);
+					myParent.getChildren().remove(sunToken);
+				});
+				Random rand = new Random();
+				double r=25;
+				sunToken.setShape(new Circle(r));
+				sunToken.setMinSize(2*r, 2*r);
+				sunToken.setMaxSize(2*r, 2*r);
+				sunToken.setLayoutX(x);
+				sunToken.setLayoutY(y);
+				sunToken.getStylesheets().add("/sample/sunStyle.css");
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						myParent.getChildren().add(sunToken);
+					}
+				});
+				sunflowerSun(x,y);
+			}
+		};
+		timer.schedule(task,+10000);
+	}
+
+	public void dragging(MouseEvent mouseEvent) {
+		MouseEvent e = mouseEvent ;
+		player.setLayoutX(e.getSceneX()-38.5);
+		player.setLayoutY(e.getSceneY()-77);
+		System.out.println(e.getSceneX()+" " + e.getSceneY());
+	}
 
 
-		if (selectedImage!=null){
-			Image myimg = new Image(selectedImage);
-			ImageView img = new ImageView();
-			img.setImage(myimg);
-			img.setLayoutX(x);
-			img.setLayoutY(y);
-			myParent.getChildren().add(img);
-			selectedImage = null;
-
+	public int flag = 0;
+	public void pauser(MouseEvent mouseEvent) {
+		if(flag==0){
+			for(int i=0 ; i<animation.size() ; i++)
+				if(animation.get(i).getStatus() == Animation.Status.RUNNING) {
+					animation.get(i).pause();
+				}
+			flag+=1;
+			tZombie.cancel();
+			tSun.cancel();
+		}
+		else{
+			flag=0;
+			for(int i=0 ; i<animation.size() ; i++)
+				if(animation.get(i).getStatus() == Animation.Status.PAUSED) {
+					animation.get(i).play();
+				}
+			funzombie();
+			funsun();
 		}
 	}
 
-	public void plantPea(MouseEvent mouseEvent) {
-		selectedImage = "sample/images/plants/peashooter.gif";
-	}
-	public void plantsunFlower(MouseEvent mouseEvent) {
-		selectedImage = "sample/images/plants/sunflower.gif";
+	public void mousePressedsunflower(MouseEvent mouseEvent) {
+		startDragX = mouseEvent.getSceneX();
+		startDragY = mouseEvent.getSceneY();
+		player= new ImageView();
+		player.setImage(sunflower.getImage());
+		player.setFitWidth(77.0);
+		player.setFitHeight(77.0);
+		player.setVisible(true);
+		myParent.getChildren().add(player);
+		player.setLayoutX(mouseEvent.getSceneX()-33.5);
+		player.setLayoutY(mouseEvent.getSceneY()-64);
+
 	}
 
-	public void startMeter(){
-		double xnot = khopdi.getX();
-		double ynot = khopdi.getY();
-		PathElement[] path = {
-				new MoveTo(xnot,ynot+10),
-				new LineTo(xnot-180, ynot+10),
+	public void funzombie(){
+		tZombie = new Timer();
+		TimerTask taskZombie = new TimerTask() {
+			@Override
+			public void run() {
+				ImageView zom = new ImageView();
+				zom.setImage(zombie.getImage());
+				zom.setLayoutX(1216.0);
+				zom.setLayoutY(330.0);
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						myParent.getChildren().add(zom);
+					}
+				});
+				PathElement[] path1 = {
+						new MoveTo(zom.getX(), zom.getY() + 60),
+						new LineTo(zom.getX() - 900, zom.getY() + 60),
+				};
+				Path road1 = new Path();
+				road1.getElements().addAll(path1);
+				PathTransition anim = new PathTransition();
+				animation.add(anim);
+				anim.setOnFinished(e->endZombie(zom));
+				anim.setNode(zom);
+				anim.setPath(road1);
+				anim.setDuration(new Duration(80000));
+				anim.play();
+				funzombie();
+			}
 		};
-
-		Path road = new Path();
-		road.getElements().addAll(path);
-		PathTransition anim2 = new PathTransition();
-		anim2.setNode(khopdi);
-		anim2.setPath(road);
-		anim2.setDuration(new Duration(60000));
-		anim2.play();
+		tZombie.schedule(taskZombie,10000);
+	}
+	private void endZombie(ImageView zom) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				zom.setVisible(false);
+				myParent.getChildren().remove(zom);
+				moveLawnmover();
+			}
+		});
+	}
+	public int tr = 0;
+	public void moveLawnmover() {
+		if(tr==0) {
+			PathElement[] path = {
+					new MoveTo(326, 55),
+					new LineTo(1250, 55),
+			};
+			Path road = new Path();
+			road.getElements().addAll(path);
+			PathTransition anim = new PathTransition();
+			animation.add(anim);
+			anim.setOnFinished(e->endLawnmover());
+			anim.setNode(LandMover);
+			anim.setPath(road);
+			anim.setDuration(new Duration(6000));
+			anim.play();
+			tr++;
+		}
+	}
+	private void endLawnmover() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				LandMover.setVisible(false);
+				myParent.getChildren().remove(LandMover);
+				moveLawnmover();
+			}
+		});
 	}
 
-	public void zombiesEntry(){
-		double x1 = b_08.getLayoutX() + myParent.getScene().getWindow().getX();
-		double y1 = myGrid.getLayoutY() ;
-		Image myimg = new Image("sample/images/zombies/zombie.gif");
-		ImageView img = new ImageView();
-		img.setImage(myimg);
-		img.setLayoutX(x1);
-		img.setLayoutY(y1);
-		myParent.getChildren().add(img);
 
-
-
-		double x2 = b_00.getLayoutX() + myParent.getScene().getWindow().getX();
-
-		PathElement[] path = {
-				new MoveTo(b_08.getLayoutX() - 2.5*myParent.getScene().getWindow().getX(),b_08.getLayoutY()),
-				new LineTo(b_00.getLayoutX() - 2.5*myParent.getScene().getWindow().getX(),b_08.getLayoutY()),
+	public void funsun(){
+		tSun = new Timer();
+		TimerTask taskSun = new TimerTask() {
+			@Override
+			public void run() {
+				System.out.println("here");
+				Button sunToken = new Button();
+				sunToken.setOnMouseClicked(event -> {
+					changeSunValue(100);
+					sunToken.setVisible(false);
+					myParent.getChildren().remove(sunToken);
+				});
+				Random rand = new Random();
+				double r=25;
+				int x = 326 + rand.nextInt(200);
+				int y = 260 + rand.nextInt(100);
+				sunToken.setShape(new Circle(r));
+				sunToken.setMinSize(2*r, 2*r);
+				sunToken.setMaxSize(2*r, 2*r);
+				sunToken.setLayoutX(x);
+				sunToken.setLayoutY(80.0);
+				sunToken.getStylesheets().add("/sample/sunStyle.css");
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						myParent.getChildren().add(sunToken);
+					}
+				});
+				PathElement[] path = {
+						new MoveTo(x,-100.0),
+						new LineTo(x, y),
+				};
+				Path road = new Path();
+				road.getElements().addAll(path);
+				PathTransition anim = new PathTransition();
+				animation.add(anim);
+				anim.setNode(sunToken);
+				anim.setPath(road);
+				anim.setDuration(new Duration(10000));
+				anim.play();
+				funsun();
+			}
 		};
-
-		Path road = new Path();
-		road.getElements().addAll(path);
-		PathTransition anim2 = new PathTransition();
-		anim2.setNode(img);
-		anim2.setPath(road);
-		anim2.setDuration(new Duration(30000));
-		anim2.play();
-
+		tSun.schedule(taskSun,9000);
 	}
 
-	void start() throws InterruptedException {
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		funsun();
+		funzombie();
 		startMeter();
-		for (int i=0; i<6; i++){
-			zombiesEntry();
-			// add a waiting mechanism here
-			addSun(400 + (20*i));
-		}
+		animation = new ArrayList<>(0);
 	}
+
 
 }

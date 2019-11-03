@@ -11,15 +11,11 @@ import java.io.IOException;
 
 public class selectlevelController {
 	public void startLevel1(MouseEvent mouseEvent) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-		Parent root = (Parent)loader.load();
-		((homeController)loader.getController()).setLevel(1);
-		((Node)mouseEvent.getSource()).getScene().setRoot(root);
-	}
-	public void startLevel3(MouseEvent mouseEvent) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-		Parent root = (Parent)loader.load();
-		((homeController)loader.getController()).setLevel(3);
-		((Node)mouseEvent.getSource()).getScene().setRoot(root);
+		Parent root2 = FXMLLoader.load(getClass().getResource("level1.fxml"));
+		/*Stage myStage = (Stage) ((Node)mouseEvent.getSource()).getScene().getWindow();
+		myStage.setMaximized(true);
+		myStage.setScene(new Scene(root2, 100, 100));
+		myStage.show();*/
+		((Node)mouseEvent.getSource()).getScene().setRoot(root2);
 	}
 }
