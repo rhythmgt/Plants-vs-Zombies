@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.PathTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,21 +21,27 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class level1Controller {
+public class level1Controller implements Initializable {
 
 	public javafx.scene.image.ImageView LandMover;
 	public AnchorPane menu;
 	public AnchorPane myParent;
 	public Label sunCount;
+	public ImageView backgroundBoard;
+	public ImageView peaCard;
+	public javafx.scene.image.ImageView peaplant;
+	public double startDragX , startDragY;
 
 	@FXML
+	public javafx.scene.image.ImageView peashooter;
+	@FXML
 	private Button PauseBtn;
-
-
-
 	@FXML
 	public void pauseGame(MouseEvent mouseEvent) throws IOException {
 		/*Stage primaryStage2 = new Stage();
@@ -56,11 +63,6 @@ public class level1Controller {
 
 	@FXML
 	public void pauseGame2(MouseEvent mouseEvent) throws IOException, InterruptedException {
-		/*while (LandMover.getX() < 800){
-		LandMover.setX(LandMover.getX() + 10);
-			Thread.sleep(10);
-
-		}*/
 		PathElement[] path = {
 				new MoveTo(256,65),
 				new LineTo(800, 65),
@@ -132,5 +134,75 @@ public class level1Controller {
 		int i = Integer.parseInt(sunCount.getText());
 		i += k;
 		sunCount.setText(Integer.toString(i));
+	}
+
+	public void mousePressed(MouseEvent mouseEvent) {
+		startDragX = mouseEvent.getSceneX();
+		startDragY = mouseEvent.getSceneY();
+		System.out.println(mouseEvent.getSceneX() + " " + mouseEvent.getSceneY());}
+
+	public void mouseReleased(MouseEvent mouseEvent) throws InterruptedException {
+		//peashooter.setVisible(false);
+		MouseEvent e = mouseEvent ;
+		System.out.println("here");
+		ImageView player = peashooter ;
+		/*ImageView player = new ImageView();
+		player.setImage(peashooter.getImage());
+		player.setFitWidth(77.0);
+		player.setFitHeight(77.0);
+		player.setLayoutX(971.0);
+		player.setLayoutY(13.0);
+		player.setVisible(true);
+		Thread.sleep(200);*/
+		peashooter.setVisible(true);
+		player.setTranslateX(e.getSceneX() - startDragX);
+		player.setTranslateY(e.getSceneY() - startDragY);
+		System.out.println("here "+e.getSceneX() + " " + e.getSceneY());
+		if (e.getSceneX() > 232 && e.getSceneX() < 232 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
+			player.setTranslateX(275 - startDragX);
+			player.setTranslateY(60 - startDragY);
+			System.out.println(e.getSceneX() + " " + e.getSceneY());
+		} else if (e.getSceneX() > 232 + 65 && e.getSceneX() < 232 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
+			player.setTranslateX(275 + 65 - startDragX);
+			player.setTranslateY(60 - startDragY);
+			System.out.println(e.getSceneX() + " " + e.getSceneY());
+		} else if (e.getSceneX() > 232 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
+			player.setTranslateX(275 + 65 + 65 - startDragX);
+			player.setTranslateY(60 - startDragY);
+			player.setOnMousePressed(null);
+			player.setOnMouseDragged(null);
+			System.out.println(e.getSceneX() + " " + e.getSceneY());
+		} else if (e.getSceneX() > 232 + 65 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
+			player.setTranslateX(275 + 65 + 65 + 65 - startDragX);
+			player.setTranslateY(60 - startDragY);
+			System.out.println(e.getSceneX() + " " + e.getSceneY());
+		} else if (e.getSceneX() > 240 + 65 + 65 + 65 + 65 && e.getSceneX() < 240 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
+			player.setTranslateX(283 + 65 + 65 + 65 + 65 - startDragX);
+			player.setTranslateY(60 - startDragY);
+			System.out.println(e.getSceneX() + " " + e.getSceneY());
+		} else if (e.getSceneX() > 240 + 65 + 65 + 65 + 65 + 65 && e.getSceneX() < 240 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
+			player.setTranslateX(275 + 65 + 65 + 65 + 65 + 65 - startDragX);
+			player.setTranslateY(60 - startDragY);
+			System.out.println(e.getSceneX() + " " + e.getSceneY());
+		} else if (e.getSceneX() > 232 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
+			player.setTranslateX(275 + 65 + 65 + 65 + 65 + 65 + 65 - startDragX);
+			player.setTranslateY(60 - startDragY);
+			System.out.println(e.getSceneX() + " " + e.getSceneY());
+		} else if (e.getSceneX() > 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
+			player.setTranslateX(275 + 65 + 65 + 65 + 65 + 65 + 65 + 65 - startDragX);
+			player.setTranslateY(60 - startDragY);
+			System.out.println(e.getSceneX() + " " + e.getSceneY());
+		} else if (e.getSceneX() > 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneX() < 232 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 && e.getSceneY() > 20 && e.getSceneY() < 20 + 100) {
+			player.setTranslateX(275 + 65 + 65 + 65 + 65 + 65 + 65 + 65 + 65 - startDragX);
+			player.setTranslateY(60 - startDragY);
+			System.out.println(e.getSceneX() + " " + e.getSceneY());
+		}
+		player.setOnMousePressed(null);
+		player.setOnMouseReleased(null);
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		peashooter.setVisible(false);
 	}
 }

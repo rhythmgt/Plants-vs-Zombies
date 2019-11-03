@@ -88,12 +88,12 @@
            </opaqueInsets>
        </AnchorPane>
       <Button layoutX="1130.0" layoutY="593.0" mnemonicParsing="false" onMouseClicked="#addSun" prefHeight="60.0" prefWidth="104.0" stylesheets="@effects.css" text="Suraj" />
-      <ImageView fx:id="LandMover1" fitHeight="47.0" fitWidth="164.0" layoutX="51.0" layoutY="28.0">
+      <ImageView fx:id="LandMover1" fitHeight="47.0" fitWidth="164.0" layoutX="53.0" layoutY="30.0">
          <image>
             <Image url="@images/sunMeter.png" />
          </image>
       </ImageView>
-      <Label fx:id="sunCount" layoutX="135.0" layoutY="34.0" prefHeight="39.0" prefWidth="64.0" text="0">
+      <Label fx:id="sunCount" layoutX="143.0" layoutY="36.0" prefHeight="39.0" prefWidth="64.0" text="0">
          <font>
             <Font size="27.0" />
          </font>
@@ -103,5 +103,25 @@
             <Image url="@images/Shovel.png" />
          </image>
       </ImageView>
+       <ImageView fx:id="backgroundBoard" fitHeight="176.0" fitWidth="389.0" layoutX="450.0" layoutY="13.0">
+           <image>
+               <Image url="@images/boards/b1.jpg" />
+           </image>
+       </ImageView>
+       <ImageView fx:id="peaCard" fitHeight="92.0" fitWidth="100.0" layoutX="463.0" layoutY="55.0" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased">
+           <image>
+               <Image url="@images/cards/card_peashooter.png" />
+           </image>
+       </ImageView>
+       <ImageView fx:id="sunflowerCard" fitHeight="92.0" fitWidth="100.0" layoutX="563.0" layoutY="55.0">
+           <image>
+               <Image url="@images/cards/card_sunflower.png" />
+           </image>
+       </ImageView>
+       <ImageView fx:id="peashooter" fitHeight="77.0" fitWidth="77.0" layoutX="971.0" layoutY="13.0">
+           <image>
+               <Image url="@images/plants/peashooter.gif" />
+           </image>
+       </ImageView>
    </children>
 </AnchorPane>
