@@ -80,6 +80,7 @@ public class level1Controller implements  Initializable {
 	public void pauseGame(MouseEvent mouseEvent) throws IOException {
 		pauser(mouseEvent);
 		menu.setVisible(true);
+		menu.toFront();
 		PauseBtn.setDisable(true);
 	}
 
