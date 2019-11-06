@@ -3,7 +3,7 @@ package PlantZombie;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-abstract class Level implements Serialisable{
+public abstract class Level implements Serialisable{
     private final boolean[] availablePlants ;
     private final ArrayList<Zombie> Zombie;
     private final Courtyard myCourtyard ;

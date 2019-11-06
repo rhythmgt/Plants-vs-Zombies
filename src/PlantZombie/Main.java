@@ -43,44 +43,7 @@ interface Serialisable{
 
 }
 
-class Game implements Serialisable {
-    //private int currentLevel ;
-    private final String name ;
-    private Level ongoingLevel ;
-    //transient private GameStarter myStarter;
 
-    public Level getOngoingLevel() {
-        return ongoingLevel;
-    }
-    public void setOngoingLevel(Level ongoingLevel) {
-        this.ongoingLevel = ongoingLevel;
-    }
-    public String getName() {
-        return name;
-    }
-    /*public void setmyStarter(GameStarter gm){
-        myStarter = gm;
-    }*/
-    /*public void setName(String name) {
-        this.name = name;
-    }*/
-    /*public void setCurrentLevel(int currentLevel) {
-        this.currentLevel = currentLevel;
-    }
-    public int getCurrentLevel() {
-        return currentLevel;
-    }*/
-    Game(){
-        ongoingLevel = new Level1();
-        name = "anamika";
-    }
-
-    public void pauseGame(){}
-    public void resume(){}
-    public void saveandExit(){}
-    public void exitWithoutSave(){}
-    public void startGame(){}
-}
 
 
 
