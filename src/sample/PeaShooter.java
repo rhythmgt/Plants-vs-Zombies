@@ -34,7 +34,7 @@ public class PeaShooter extends Plant implements Serializable {
             peaImage.setFitWidth(21.0);
             peaImage.setLayoutX(myImg.getLayoutX());
             peaImage.setLayoutY(330);
-            peaAnimation anim = new peaAnimation(Duration.millis(4000), peaImage.getLayoutX(), peaImage.getLayoutX() + 1000, peaImage, this.opponent, parent);
+            peaAnimation anim = new peaAnimation(Duration.millis(4000), peaImage.getLayoutX(), peaImage.getLayoutX() + 1000, peaImage, opponent, parent);
             parent.getChildren().add(peaImage);
         }
     }
