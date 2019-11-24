@@ -50,7 +50,11 @@ public class level1Controller implements  Initializable {
     public ImageView timer;
 	private ArrayList<ImageView> myZombies;
 
-    public void startMeter(){
+	public ArrayList<ImageView> getMyZombies() {
+		return myZombies;
+	}
+
+	public void startMeter(){
 
         Platform.runLater(new Runnable() {
             @Override
@@ -173,10 +177,12 @@ public class level1Controller implements  Initializable {
 		if(x>326.0 && x<1238.0 && y>360.0 && y<463.0) {
 			if(player.getImage()==sunflower.getImage()){
 				sunflowerSun(x,y);
+				myParent.getChildren().remove(player);
+				Plant sunFlower = new SunFlower(x,330, myParent);
 			}
 			else {
 				x = mouseEvent.getSceneX() + 38.5;
-				y = mouseEvent.getSceneY() - 38.5;
+				//y = mouseEvent.getSceneY() - 38.5;
 				ImageView peatrans = new ImageView();
 				peatrans.setImage(peaball.getImage());
 				peatrans.setVisible(true);
