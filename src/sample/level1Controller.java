@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
+import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,7 @@ public class level1Controller implements  Initializable {
 	public ImageView peaCard;
 	public double startDragX , startDragY;
 	public ImageView peashooter;
-	public ArrayList<PathTransition> animation ;
+	public ArrayList<Transition> animation ;
 	public ImageView player;
 	public ImageView peaball;
 	public ImageView zombie;
@@ -47,6 +48,7 @@ public class level1Controller implements  Initializable {
 	public Timer tSun ;
     public ImageView khopdi;
     public ImageView timer;
+	private ArrayList<ImageView> myZombies;
 
     public void startMeter(){
 
@@ -181,9 +183,11 @@ public class level1Controller implements  Initializable {
 				peatrans.setFitHeight(21.0);
 				peatrans.setFitWidth(21.0);
 				peatrans.setLayoutX(x - 10.5);
-				peatrans.setLayoutY(y - 21.0);
+				peatrans.setLayoutY(330);
+
+				peaAnimation anim = new peaAnimation(Duration.millis(4000), peatrans.getLayoutX(), peatrans.getLayoutX() + 1000, peatrans, myZombies, myParent);
 				myParent.getChildren().add(peatrans);
-				PathElement[] path = {
+				/*PathElement[] path = {
 						new MoveTo(peatrans.getX(), peatrans.getY()),
 						new LineTo(peatrans.getX() + 1000, peatrans.getY()),
 				};
@@ -195,6 +199,9 @@ public class level1Controller implements  Initializable {
 				anim.setPath(road);
 				anim.setDuration(new Duration(4000));
 				anim.setCycleCount(100);
+				anim.play();*/
+				anim.setCycleCount(100);
+				animation.add(anim);
 				anim.play();
 			}
 		}
@@ -237,7 +244,7 @@ public class level1Controller implements  Initializable {
 		MouseEvent e = mouseEvent ;
 		player.setLayoutX(e.getSceneX()-38.5);
 		player.setLayoutY(e.getSceneY()-77);
-		System.out.println(e.getSceneX()+" " + e.getSceneY());
+		//System.out.println(e.getSceneX()+" " + e.getSceneY());
 	}
 
 
@@ -286,6 +293,13 @@ public class level1Controller implements  Initializable {
 				zom.setImage(zombie.getImage());
 				zom.setLayoutX(1216.0);
 				zom.setLayoutY(330.0);
+
+				///
+
+				myZombies.add(zom);
+
+				///
+
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
@@ -356,7 +370,7 @@ public class level1Controller implements  Initializable {
 		TimerTask taskSun = new TimerTask() {
 			@Override
 			public void run() {
-				System.out.println("here");
+				//System.out.println("here");
 				Button sunToken = new Button();
 				sunToken.setOnMouseClicked(event -> {
 					changeSunValue(100);
@@ -405,6 +419,7 @@ public class level1Controller implements  Initializable {
 		funzombie();
 		startMeter();
 		animation = new ArrayList<>(0);
+		myZombies = new ArrayList<>();
 	}
 
 
