@@ -41,9 +41,9 @@ public class peaAnimation extends Transition {
             if (myshape.getBoundsInParent().intersects(myenemy.getBoundsInParent())) {
                 System.out.println("Thuk gya");
                 System.out.println("Ho gya");
-                myshape.setVisible(false);
-                //myParent.getChildren().remove(myshape);
-                //this.stop();
+                //myshape.setVisible(false);
+                myParent.getChildren().remove(myshape);
+                this.stop();
 
             }
         }

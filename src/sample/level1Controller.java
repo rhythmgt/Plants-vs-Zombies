@@ -182,33 +182,8 @@ public class level1Controller implements  Initializable {
 			}
 			else {
 				x = mouseEvent.getSceneX() + 38.5;
-				//y = mouseEvent.getSceneY() - 38.5;
-				ImageView peatrans = new ImageView();
-				peatrans.setImage(peaball.getImage());
-				peatrans.setVisible(true);
-				peatrans.setFitHeight(21.0);
-				peatrans.setFitWidth(21.0);
-				peatrans.setLayoutX(x - 10.5);
-				peatrans.setLayoutY(330);
-
-				peaAnimation anim = new peaAnimation(Duration.millis(4000), peatrans.getLayoutX(), peatrans.getLayoutX() + 1000, peatrans, myZombies, myParent);
-				myParent.getChildren().add(peatrans);
-				/*PathElement[] path = {
-						new MoveTo(peatrans.getX(), peatrans.getY()),
-						new LineTo(peatrans.getX() + 1000, peatrans.getY()),
-				};
-				Path road = new Path();
-				road.getElements().addAll(path);
-				PathTransition anim = new PathTransition();
-				animation.add(anim);
-				anim.setNode(peatrans);
-				anim.setPath(road);
-				anim.setDuration(new Duration(4000));
-				anim.setCycleCount(100);
-				anim.play();*/
-				anim.setCycleCount(100);
-				animation.add(anim);
-				anim.play();
+				myParent.getChildren().remove(player);
+				PeaShooter PS = new PeaShooter(x,330, myParent, myZombies,animation);
 			}
 		}
 		else
