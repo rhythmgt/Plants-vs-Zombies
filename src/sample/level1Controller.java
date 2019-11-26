@@ -49,7 +49,8 @@ public class level1Controller implements  Initializable {
     public ImageView khopdi;
     public ImageView timer;
 	private ArrayList<ImageView> myZombies;
-
+	private ArrayList<Plant> myPlants;
+	private ArrayList<Zombie> myzombies;
 	public ArrayList<ImageView> getMyZombies() {
 		return myZombies;
 	}
@@ -179,11 +180,13 @@ public class level1Controller implements  Initializable {
 				sunflowerSun(x,y);
 				myParent.getChildren().remove(player);
 				Plant sunFlower = new SunFlower(x,330, myParent);
+				myPlants.add(sunFlower);
 			}
 			else {
 				x = mouseEvent.getSceneX() + 38.5;
 				myParent.getChildren().remove(player);
-				PeaShooter PS = new PeaShooter(x,330, myParent, myZombies,animation);
+				PeaShooter PS = new PeaShooter(x,330, myParent, myzombies,animation);
+				myPlants.add(PS);
 			}
 		}
 		else
@@ -237,7 +240,7 @@ public class level1Controller implements  Initializable {
 					animation.get(i).pause();
 				}
 			flag+=1;
-			tZombie.cancel();
+//			tZombie.cancel();
 			tSun.cancel();
 		}
 		else{
@@ -246,7 +249,7 @@ public class level1Controller implements  Initializable {
 				if(animation.get(i).getStatus() == Animation.Status.PAUSED) {
 					animation.get(i).play();
 				}
-			funzombie();
+//			funzombie();
 			funsun();
 		}
 	}
@@ -266,6 +269,7 @@ public class level1Controller implements  Initializable {
 	}
 
 	public void funzombie(){
+		/*
 		tZombie = new Timer();
 		TimerTask taskZombie = new TimerTask() {
 			@Override
@@ -303,7 +307,21 @@ public class level1Controller implements  Initializable {
 				funzombie();
 			}
 		};
-		tZombie.schedule(taskZombie,10000);
+		tZombie.schedule(taskZombie,10000);*/
+
+		Transition zombieCreater = new Transition() {
+			{
+				this.setCycleDuration(Duration.seconds(15));
+				this.setCycleCount(INDEFINITE);
+			}
+			@Override
+			protected void interpolate(double frac) {
+				if (frac==0){
+				Zombie NZ = new NormalZombie(1216, myParent, animation, myPlants);
+				myzombies.add(NZ);}
+			}
+		} ;
+		zombieCreater.play();
 	}
 	private void endZombie(ImageView zom) {
 		Platform.runLater(new Runnable() {
@@ -401,6 +419,8 @@ public class level1Controller implements  Initializable {
 		startMeter();
 		animation = new ArrayList<>(0);
 		myZombies = new ArrayList<>();
+		myzombies = new ArrayList<>();
+		myPlants = new ArrayList<>();
 	}
 
 

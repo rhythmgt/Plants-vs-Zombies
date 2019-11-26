@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class PeaShooter extends Plant implements Serializable {
     private AnchorPane parent;
-    private ArrayList<ImageView> opponent;
-    PeaShooter(double i, double j, AnchorPane parent, ArrayList<ImageView> al, ArrayList<Transition> animations) {
+    private ArrayList<Zombie> opponent;
+    PeaShooter(double i, double j, AnchorPane parent, ArrayList<Zombie> al, ArrayList<Transition> animations) {
         super((int)i, (int)j);
         myImg = new ImageView("/sample/images/plants/peashooter.gif");
         myImg.setLayoutX(i-33.5);

@@ -13,10 +13,10 @@ public class peaAnimation extends Transition {
     private double position;
     private double difference;
     private ImageView myshape;
-    private ArrayList<ImageView> myenemies;
+    private ArrayList<Zombie> myenemies;
     private final AnchorPane myParent;
 
-    peaAnimation(Duration dr, double start, double end, ImageView myshape, ArrayList<ImageView> enemy, AnchorPane ap) {
+    peaAnimation(Duration dr, double start, double end, ImageView myshape, ArrayList<Zombie> enemy, AnchorPane ap) {
         setCycleDuration(dr);
         position = start;
         difference = end - start;
@@ -37,8 +37,8 @@ public class peaAnimation extends Transition {
 
     void isCollided() {
 
-        for (ImageView myenemy : myenemies){
-            if (myshape.getBoundsInParent().intersects(myenemy.getBoundsInParent())) {
+        for (Zombie myenemy : myenemies){
+            if (myshape.getBoundsInParent().intersects(myenemy.getImage().getBoundsInParent())) {
                 System.out.println("Thuk gya");
                 System.out.println("Ho gya");
                 //myshape.setVisible(false);

@@ -10,6 +10,9 @@ public abstract class Character implements Serializable {
         private final int row;
         protected ImageView myImg;
 
+        public ImageView getImage(){
+            return myImg;
+        }
 
         public int getHp() {
             return hp;
