@@ -75,12 +75,17 @@ public class Courtyard {
                 double x2 = (mybounds[pos] + mybounds[pos-1])/2;
                 switch (k){
                     case 1:
+                        if (numSunToken>=50){
                     Plant sunflower = new SunFlower(0, pos-1,x2,330, myParent, this);
                     addPlantToList(sunflower, 0, pos-1);
+                        changeSunValue(-50);}
+
                     break;
                     case 2:
+                        if (numSunToken>=100){
                     Plant peaShooter = new PeaShooter(0,pos-1, x2,330, myParent, zombies,myAnimations, this);
                     addPlantToList(peaShooter, 0, pos-1);
+                        changeSunValue(-100);}
                 }
             }
         }
