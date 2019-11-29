@@ -7,16 +7,17 @@ import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class peaAnimation extends Transition {
 
     private double position;
     private double difference;
     private ImageView myshape;
-    private ArrayList<Zombie> myenemies;
+    private CopyOnWriteArrayList<Zombie> myenemies;
     private final AnchorPane myParent;
 
-    peaAnimation(Duration dr, double start, double end, ImageView myshape, ArrayList<Zombie> enemy, AnchorPane ap) {
+    peaAnimation(Duration dr, double start, double end, ImageView myshape, CopyOnWriteArrayList<Zombie> enemy, AnchorPane ap) {
         setCycleDuration(dr);
         position = start;
         difference = end - start;

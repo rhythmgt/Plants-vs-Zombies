@@ -8,11 +8,12 @@ import javafx.util.Duration;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PeaShooter extends Plant implements Serializable {
     private AnchorPane parent;
-    private ArrayList<Zombie> opponent;
-    PeaShooter(int row, int col, double i, double j, AnchorPane parent, ArrayList<ArrayList<Zombie>> al, ArrayList<Transition> animations) {
+    private CopyOnWriteArrayList<Zombie> opponent;
+    PeaShooter(int row, int col, double i, double j, AnchorPane parent, ArrayList<CopyOnWriteArrayList<Zombie>> al, ArrayList<Transition> animations) {
         super(row, col);
         myImg = new ImageView("/sample/images/plants/peashooter.gif");
         myImg.setLayoutX(i-33.5);

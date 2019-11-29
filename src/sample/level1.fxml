@@ -44,11 +44,11 @@
             </children>
         </GridPane>
       <Circle fill="DODGERBLUE" layoutX="1254.0" layoutY="402.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
-        <ImageView fx:id="LandMover" fitHeight="60.0" fitWidth="96.0" layoutX="220.0" layoutY="359.0">
+        <!--<ImageView fx:id="LandMover" fitHeight="60.0" fitWidth="96.0" layoutX="220.0" layoutY="359.0">
             <image>
                 <Image url="@images/landMower.png" />
             </image>
-        </ImageView>
+        </ImageView>-->
         <Button fx:id="PauseBtn" layoutX="1125.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#pauseGame" prefHeight="98.0" prefWidth="91.0" style="-fx-background-radius: 400;" text="Pause">
             <font>
                 <Font size="20.0" />
@@ -91,7 +91,7 @@
             </opaqueInsets>
         </AnchorPane>
         <Button layoutX="1130.0" layoutY="593.0" mnemonicParsing="false" onMouseClicked="#addSun" prefHeight="60.0" prefWidth="104.0" stylesheets="@effects.css" text="Suraj" />
-        <ImageView fx:id="LandMover1" fitHeight="47.0" fitWidth="164.0" layoutX="53.0" layoutY="30.0">
+        <ImageView  fitHeight="47.0" fitWidth="164.0" layoutX="53.0" layoutY="30.0">
             <image>
                 <Image url="@images/sunMeter.png" />
             </image>
@@ -101,7 +101,7 @@
                 <Font size="27.0" />
             </font>
         </Label>
-        <ImageView fx:id="LandMover11" fitHeight="30.0" fitWidth="57.0" layoutX="239.0" layoutY="36.0">
+        <ImageView fitHeight="30.0" fitWidth="57.0" layoutX="239.0" layoutY="36.0">
             <image>
                 <Image url="@images/Shovel.png" />
             </image>

@@ -5,11 +5,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Courtyard {
     private LawnMover[] lawnMovers;
     private Plant[][] plants;
-    private ArrayList<ArrayList<Zombie>> zombies;
+    private volatile ArrayList<CopyOnWriteArrayList<Zombie>> zombies;
     private double[] mybounds = new double[]{318.0, 427.0, 514.0, 625.0, 730.0, 825.0, 934.0, 1027.0, 1135.0, 1254.0};
     private final AnchorPane myParent;
     private ArrayList<Transition> myAnimations;
@@ -29,13 +30,15 @@ public class Courtyard {
 
     Courtyard(int numRows, AnchorPane AP, ArrayList<Transition> anim){
         lawnMovers = new LawnMover[numRows];
+
         plants = new Plant[numRows][9];
         zombies = new ArrayList<>();
         myParent = AP;
         myAnimations = anim;
         for (int i=0; i<numRows; i++){
-            zombies.add(new ArrayList<Zombie>());
+            zombies.add(new CopyOnWriteArrayList<Zombie>());
         }
+        initializeLandMovers();
     }
 
     public LawnMover[] getLawnMovers() {
@@ -46,7 +49,7 @@ public class Courtyard {
         return plants;
     }
 
-    public ArrayList<ArrayList<Zombie>> getZombies() {
+    public ArrayList<CopyOnWriteArrayList<Zombie>> getZombies() {
         return zombies;
     }
 
@@ -76,9 +79,19 @@ public class Courtyard {
     }
     public void addZombie(){
 
-        Zombie NZ = new NormalZombie(0, 1216, myParent, myAnimations, plants);
+        Zombie NZ = new NormalZombie(0, 1216, myParent, myAnimations, plants, this);
         addZombieToList(NZ,0);
 
+    }
+    public  void removeZombie(int i, Zombie z){
+
+            zombies.get(i).remove(z);
+
+    }
+    private void initializeLandMovers(){
+        for (int i =0; i< lawnMovers.length; i++){
+            lawnMovers[i] = new LawnMover(0, myParent, zombies);
+        }
     }
 
 }

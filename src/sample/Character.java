@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 
@@ -9,6 +10,8 @@ public abstract class Character implements Serializable {
         private int hp;
         private final int row;
         protected ImageView myImg;
+        protected AnchorPane myParent;
+        protected Courtyard myCourtyard;
 
         public ImageView getImage(){
             return myImg;

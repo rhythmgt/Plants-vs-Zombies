@@ -335,12 +335,12 @@ public class level1Controller implements  Initializable {
 			public void run() {
 				zom.setVisible(false);
 				myParent.getChildren().remove(zom);
-				moveLawnmover();
+				//moveLawnmover();
 			}
 		});
 	}
 	public int tr = 0;
-	public void moveLawnmover() {
+	/*public void moveLawnmover() {
 		if(tr==0) {
 			PathElement[] path = {
 					new MoveTo(326, 55),
@@ -367,7 +367,7 @@ public class level1Controller implements  Initializable {
 				moveLawnmover();
 			}
 		});
-	}
+	}*/
 
 
 	public void funsun(){

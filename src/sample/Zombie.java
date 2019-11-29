@@ -11,7 +11,7 @@ abstract class Zombie extends Character implements Serializable{
     private int status;
     private int distanceRemaining;
     private int speed;
-
+    protected LawnMover targetLandMover;
     public int getSpeed() {
         return speed;
     }
@@ -39,8 +39,12 @@ abstract class Zombie extends Character implements Serializable{
     Zombie(int i) {
         super(i);
     }
-    public void getAttacked(){
+        public void getAttacked(){
+    }
 
+    public void killMe(){
+        myParent.getChildren().remove(myImg);
+        myCourtyard.removeZombie(getRow(),this);
     }
 
     protected class moveZombieAnimation extends Transition{
@@ -66,6 +70,15 @@ abstract class Zombie extends Character implements Serializable{
                     System.out.println("I will fight with the plant");
                     this.pause();
                 }
+            }
+
+            if (targetLandMover != null && myImg.getBoundsInParent().intersects(targetLandMover.getImage().getBoundsInParent())){
+
+                if (targetLandMover.getPresent()){
+                    System.out.println("Collided");
+                    targetLandMover.moveMe();
+                }
+
             }
         }
     }
