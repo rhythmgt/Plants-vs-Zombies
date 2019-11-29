@@ -1,13 +1,19 @@
 package sample;
 
 import javafx.animation.Transition;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Courtyard {
+    private Label sunCount;
+    private int numSunToken;
     private LawnMover[] lawnMovers;
     private Plant[][] plants;
     private volatile ArrayList<CopyOnWriteArrayList<Zombie>> zombies;
@@ -28,7 +34,8 @@ public class Courtyard {
         }
     }
 
-    Courtyard(int numRows, AnchorPane AP, ArrayList<Transition> anim){
+    Courtyard(int numRows, AnchorPane AP, ArrayList<Transition> anim, Label TokenValue){
+        sunCount = TokenValue;
         lawnMovers = new LawnMover[numRows];
 
         plants = new Plant[numRows][9];
@@ -39,6 +46,7 @@ public class Courtyard {
             zombies.add(new CopyOnWriteArrayList<Zombie>());
         }
         initializeLandMovers();
+        sunGenerator();
     }
 
     public LawnMover[] getLawnMovers() {
@@ -100,6 +108,59 @@ public class Courtyard {
         }
     }
 
-    public void changeSunValue(int i) {
+    public void sunGenerator(){
+        Random rand = new Random();
+
+        Transition sunTokenScheduler = new Transition() {
+            {
+                this.setCycleDuration(Duration.seconds(15));
+                this.setCycleCount(INDEFINITE);
+            }
+            @Override
+            protected void interpolate(double frac) {
+                if (frac==0){
+                    int x = 326 + rand.nextInt(200);
+                    SunToken sun = new SunToken(x, 30, 350);
+                }
+            }
+        };
+        sunTokenScheduler.play();
     }
+
+    public void changeSunValue(int i) {
+        numSunToken += i;
+        sunCount.setText(Integer.toString(numSunToken));
+    }
+    private class SunToken {
+        Button myImage;
+        SunToken(double x, double ystart, double yend){
+            myImage = new Button();
+            myImage.setOnMouseClicked(event -> {
+                changeSunValue(100);
+                myImage.setVisible(false);
+                myParent.getChildren().remove(myImage);
+            });
+            double r=25;
+            myImage.setShape(new Circle(r));
+            myImage.setMinSize(2*r, 2*r);
+            myImage.setMaxSize(2*r, 2*r);
+            myImage.setLayoutX(x);
+            myImage.setLayoutY(80.0);
+            myImage.getStylesheets().add("/sample/sunStyle.css");
+            myParent.getChildren().add(myImage);
+            double difference = yend-ystart;
+            Transition t = new Transition() {
+                {
+                    this.setCycleCount(1);
+                    this.setCycleDuration(Duration.seconds(18));
+                }
+                @Override
+                protected void interpolate(double frac) {
+                    myImage.setLayoutY(ystart + frac*difference);
+                }
+            };
+            t.play();
+        }
+    }
+
 }

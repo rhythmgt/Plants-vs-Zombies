@@ -251,7 +251,7 @@ public class level1Controller implements  Initializable {
 					animation.get(i).play();
 				}
 //			funzombie();
-			funsun();
+//			funsun();
 		}
 	}
 
@@ -296,30 +296,10 @@ public class level1Controller implements  Initializable {
 		});
 	}
 
-	public void funsun(){
-
-		Random rand = new Random();
-
-		Transition sunTokenScheduler = new Transition() {
-			{
-				this.setCycleDuration(Duration.seconds(15));
-				this.setCycleCount(INDEFINITE);
-			}
-			@Override
-			protected void interpolate(double frac) {
-				if (frac==0){
-					int x = 326 + rand.nextInt(200);
-					SunToken sun = new SunToken(myParent, myCourtyard,x, 30, 350);
-				}
-			}
-		};
-		sunTokenScheduler.play();
-	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		animation = new ArrayList<>(0);
-		myCourtyard = new Courtyard(1,myParent, animation);
-		funsun();
+		myCourtyard = new Courtyard(1,myParent, animation, sunCount);
 		funzombie();
 		startMeter();
 	}
