@@ -1,12 +1,10 @@
 package sample;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -15,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import PlantZombie.Game;
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +40,7 @@ public class homeController implements Initializable {
 			((Node)actionEvent.getSource()).getScene().setRoot(root);
 		}
 		else{
-			Parent root2 = FXMLLoader.load(getClass().getResource("level3.fxml"));
+			Parent root2 = FXMLLoader.load(getClass().getResource("level4.fxml"));
 			((Node)actionEvent.getSource()).getScene().setRoot(root2);
 		}
 

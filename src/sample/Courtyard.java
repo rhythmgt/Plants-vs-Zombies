@@ -93,7 +93,7 @@ public class Courtyard {
         int pos = getPlantingPosition(d);
         int vertpos = getVerticalPlantingPos(g);
         if (pos!=-1){
-            if (plants[0][pos-1] ==null ){
+            if (plants[vertpos][pos-1] ==null ){
                 double x2 = (mybounds[pos] + mybounds[pos-1])/2;
                 double y2 = (vertBounds[vertpos] + vertBounds[vertpos-1])/2;
                 switch (k){

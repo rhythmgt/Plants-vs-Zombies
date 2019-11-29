@@ -119,9 +119,9 @@ public class levelController implements  Initializable {
 	public void mouseReleased(MouseEvent mouseEvent) throws InterruptedException {
 		double x = mouseEvent.getSceneX();
 		double y = mouseEvent.getSceneY();
-
+		myParent.getChildren().remove(player);
 		//double x2 = getPlantingPosition(x);
-		if(x>326.0 && x<1238.0 && y>360.0 && y<463.0) {
+		if(x>308.0 && x<1223.0 && y>98.0 && y<697.0) {
 			if(player.getImage()==sunflower.getImage()){
 				//sunflowerSun(x,y);
 				myParent.getChildren().remove(player);
@@ -130,7 +130,7 @@ public class levelController implements  Initializable {
 				myCourtyard.addPlant(x,y,1);
 			}
 			else {
-				x = mouseEvent.getSceneX() + 38.5;
+				//x = mouseEvent.getSceneX() + 38.5;
 				myParent.getChildren().remove(player);
 				//PeaShooter PS = new PeaShooter(x2,330, myParent, myzombies,animation);
 				//myPlants.add(PS);
@@ -198,7 +198,7 @@ public class levelController implements  Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		animation = new ArrayList<>(0);
-		myCourtyard = new CourtYard1(myParent, animation, sunCount);
+		myCourtyard = new CourtYard4(myParent, animation, sunCount);
 
 		startMeter();
 	}

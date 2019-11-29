@@ -7,12 +7,12 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-public class CourtYard1 extends Courtyard {
+public class CourtYard4 extends Courtyard {
 
-    CourtYard1(AnchorPane AP, ArrayList<Transition> anim, Label TokenValue) {
-        super(1, AP, anim, TokenValue);
-        mybounds = new double[]{318.0, 427.0, 514.0, 625.0, 730.0, 825.0, 934.0, 1027.0, 1135.0, 1254.0};
-        vertBounds = new double[]{343.0, 477.0};
+    CourtYard4(AnchorPane AP, ArrayList<Transition> anim, Label TokenValue) {
+        super(5, AP, anim, TokenValue);
+        mybounds = new double[]{308.0, 412.0, 512.0, 606.0, 715.0, 815.0, 917.0, 1012.0, 1123.0, 1223.0};
+        vertBounds = new double[]{98.0,217.0 ,331.0,459.0,560.0,697.0};
         initializeLandMovers();
         Transition t = new ZombieCreator();
         t.play();
