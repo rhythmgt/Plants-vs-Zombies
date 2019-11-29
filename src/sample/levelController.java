@@ -184,23 +184,6 @@ public class levelController implements  Initializable {
 		player.setLayoutY(mouseEvent.getSceneY()-64);
 
 	}
-
-	public void funzombie(){
-
-		Transition zombieCreater = new Transition() {
-			{
-				this.setCycleDuration(Duration.seconds(15));
-				this.setCycleCount(INDEFINITE);
-			}
-			@Override
-			protected void interpolate(double frac) {
-				if (frac==0){
-					myCourtyard.addZombie(0);
-				}
-			}
-		} ;
-		zombieCreater.play();
-	}
 	private void endZombie(ImageView zom) {
 		Platform.runLater(new Runnable() {
 			@Override
@@ -216,7 +199,7 @@ public class levelController implements  Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		animation = new ArrayList<>(0);
 		myCourtyard = new CourtYard1(myParent, animation, sunCount);
-		funzombie();
+
 		startMeter();
 	}
 }

@@ -14,26 +14,22 @@ public class CourtYard1 extends Courtyard {
         mybounds = new double[]{318.0, 427.0, 514.0, 625.0, 730.0, 825.0, 934.0, 1027.0, 1135.0, 1254.0};
         vertBounds = new double[]{343.0, 477.0};
         initializeLandMovers();
+        Transition t = new ZombieCreator();
+        t.play();
     }
 
     private class ZombieCreator extends Transition{
 
+        ZombieCreator(){
+            this.setCycleDuration(Duration.seconds(15));
+            this.setCycleCount(INDEFINITE);
+        }
         @Override
         protected void interpolate(double frac) {
-
-            Transition zombieCreater = new Transition() {
-                {
-                    this.setCycleDuration(Duration.seconds(15));
-                    this.setCycleCount(INDEFINITE);
-                }
-                @Override
-                protected void interpolate(double frac) {
-                    if (frac==0){
-                        addZombie(0);
-                    }
-                }
-            } ;
-            zombieCreater.play();
+            if (frac==0){addZombie(0);}
         }
+
+
     }
+
 }
