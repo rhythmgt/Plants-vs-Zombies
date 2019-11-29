@@ -105,7 +105,7 @@
                         <Image url="@images/cards/card_wallnut.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="92.0" fitWidth="100.0" onMouseReleased="#mouseReleased">
+                <ImageView fitHeight="92.0" fitWidth="100.0" onMouseDragged="#dragging"  onMousePressed="#mousePressedbomb" onMouseReleased="#mouseReleased">
                     <image>
                         <Image url="@images/cards/card_cherrybomb.png" />
                     </image>
@@ -135,6 +135,11 @@
         <ImageView fx:id="wallnut" fitHeight="67.0" fitWidth="64.0" layoutX="556.0" layoutY="560.0" visible="false">
             <image>
                 <Image url="@images/plants/wNut0.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="cherrybomb" fitHeight="67.0" fitWidth="64.0" layoutX="556.0" layoutY="560.0" visible="false">
+            <image>
+                <Image url="@images/plants/CherryBomb.png" />
             </image>
         </ImageView>
 

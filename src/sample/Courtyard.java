@@ -118,6 +118,12 @@ public class Courtyard {
                             Plant wallnut = new Wallnut(vertpos-1,pos-1, x2,y2-65, myParent, this);
                             addPlantToList(wallnut, vertpos-1, pos-1);
                             changeSunValue(-50);}
+                        break;
+                    case 4:
+                        if (numSunToken>=150){
+                            Plant bomb = new CherryBomb(vertpos-1,pos-1, x2,y2-65, myParent, this, zombies);
+                            addPlantToList(bomb, vertpos-1, pos-1);
+                            changeSunValue(-150);}
                 }
             }
         }

@@ -40,6 +40,7 @@ public class levelController implements  Initializable {
 	public double startDragX , startDragY;
 	public ImageView peashooter;
 	public ImageView wallnut;
+	public ImageView cherrybomb;
 	public ArrayList<Transition> animation ;
 	public ImageView player;
 	public ImageView peaball;
@@ -154,6 +155,11 @@ public class levelController implements  Initializable {
 				myParent.getChildren().remove(player);
 				myCourtyard.addPlant(x,y,3);
 			}
+			else if(player.getImage() == cherrybomb.getImage()){
+				myParent.getChildren().remove(player);
+				myCourtyard.addPlant(x,y,4);
+			}
+
 		}
 		else
 			myParent.getChildren().remove(player);
@@ -194,6 +200,19 @@ public class levelController implements  Initializable {
 		startDragY = mouseEvent.getSceneY();
 		player= new ImageView();
 		player.setImage(sunflower.getImage());
+		player.setFitWidth(77.0);
+		player.setFitHeight(77.0);
+		player.setVisible(true);
+		myParent.getChildren().add(player);
+		player.setLayoutX(mouseEvent.getSceneX()-33.5);
+		player.setLayoutY(mouseEvent.getSceneY()-64);
+
+	}
+	public void mousePressedbomb(MouseEvent mouseEvent) {
+		startDragX = mouseEvent.getSceneX();
+		startDragY = mouseEvent.getSceneY();
+		player= new ImageView();
+		player.setImage(cherrybomb.getImage());
 		player.setFitWidth(77.0);
 		player.setFitHeight(77.0);
 		player.setVisible(true);
