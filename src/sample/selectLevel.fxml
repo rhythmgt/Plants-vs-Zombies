@@ -47,7 +47,7 @@
                   <Image url="@images/level.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="12.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="81.0" text="LEVEL 4" onMouseClicked="#startLevel3">
+            <Button layoutX="25.0" layoutY="12.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="81.0" text="LEVEL 4" onMouseClicked="#startLevel4">
                <font>
                   <Font size="16.0" />
                </font>

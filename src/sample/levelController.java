@@ -151,14 +151,15 @@ public class levelController implements  Initializable {
 				//myPlants.add(PS);
 				myCourtyard.addPlant(x,y,2);
 			}
-			else if(player.getImage() == wallnut.getImage()){
-				myParent.getChildren().remove(player);
-				myCourtyard.addPlant(x,y,3);
-			}
 			else if(player.getImage() == cherrybomb.getImage()){
 				myParent.getChildren().remove(player);
 				myCourtyard.addPlant(x,y,4);
 			}
+			else if(player.getImage() == wallnut.getImage()){
+				myParent.getChildren().remove(player);
+				myCourtyard.addPlant(x,y,3);
+			}
+
 
 		}
 		else

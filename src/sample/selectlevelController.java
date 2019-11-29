@@ -29,4 +29,11 @@ public class selectlevelController {
 		((homeController)loader.getController()).setLevel(3);
 		((Node)mouseEvent.getSource()).getScene().setRoot(root);
 	}
+
+	public void startLevel4(MouseEvent mouseEvent) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+		Parent root = (Parent)loader.load();
+		((homeController)loader.getController()).setLevel(4);
+		((Node)mouseEvent.getSource()).getScene().setRoot(root);
+	}
 }
