@@ -49,7 +49,7 @@ public class levelController implements  Initializable {
     public ImageView khopdi;
     public ImageView timer;
 
-	private  Courtyard myCourtyard;
+	protected   Courtyard myCourtyard;
 
 	public void startMeter(){
 
@@ -78,7 +78,7 @@ public class levelController implements  Initializable {
     }
 
     @FXML
-	private Button PauseBtn;
+	protected Button PauseBtn;
 	@FXML
 	public void pauseGame(MouseEvent mouseEvent) throws IOException {
 		pauser(mouseEvent);
@@ -184,7 +184,7 @@ public class levelController implements  Initializable {
 		player.setLayoutY(mouseEvent.getSceneY()-64);
 
 	}
-	private void endZombie(ImageView zom) {
+	protected void endZombie(ImageView zom) {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -198,7 +198,7 @@ public class levelController implements  Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		animation = new ArrayList<>(0);
-		myCourtyard = new CourtYard4(myParent, animation, sunCount);
+		myCourtyard = new CourtYard1(myParent, animation, sunCount);
 
 		startMeter();
 	}

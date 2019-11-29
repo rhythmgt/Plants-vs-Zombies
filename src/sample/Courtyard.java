@@ -84,6 +84,7 @@ public class Courtyard {
 
     public void addPlantToList(Plant p, int i, int j){
         plants[i][j] = p;
+        System.out.println("Added to List");
     }
     public void addZombieToList(Zombie z, int i){
         zombies.get(i).add(z);
@@ -93,22 +94,22 @@ public class Courtyard {
         int pos = getPlantingPosition(d);
         int vertpos = getVerticalPlantingPos(g);
         if (pos!=-1){
-            if (plants[vertpos][pos-1] ==null ){
+            if (plants[vertpos-1][pos-1] == null ){
                 double x2 = (mybounds[pos] + mybounds[pos-1])/2;
                 double y2 = (vertBounds[vertpos] + vertBounds[vertpos-1])/2;
                 switch (k){
                     case 1:
                         if (numSunToken>=50){
-                    Plant sunflower = new SunFlower(0, pos-1,x2,y2-65, myParent, this);
-                    addPlantToList(sunflower, 0, pos-1);
+                    Plant sunflower = new SunFlower(vertpos-1, pos-1,x2,y2-65, myParent, this);
+                    addPlantToList(sunflower, vertpos-1, pos-1);
 
                         changeSunValue(-50);}
 
                     break;
                     case 2:
                         if (numSunToken>=100){
-                    Plant peaShooter = new PeaShooter(0,pos-1, x2,y2-65, myParent, zombies,myAnimations, this);
-                    addPlantToList(peaShooter, 0, pos-1);
+                    Plant peaShooter = new PeaShooter(vertpos-1,pos-1, x2,y2-65, myParent, zombies,myAnimations, this);
+                    addPlantToList(peaShooter, vertpos-1, pos-1);
                         changeSunValue(-100);}
                 }
             }
