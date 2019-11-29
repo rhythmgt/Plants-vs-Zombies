@@ -100,4 +100,6 @@ public class Courtyard {
         }
     }
 
+    public void changeSunValue(int i) {
+    }
 }

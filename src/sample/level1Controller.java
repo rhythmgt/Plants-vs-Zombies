@@ -149,6 +149,7 @@ public class level1Controller implements  Initializable {
 		tanim.play();
 	}
 
+	//relocate this
 	public void changeSunValue(int k){
 		int i = Integer.parseInt(sunCount.getText());
 		i += k;
@@ -296,49 +297,23 @@ public class level1Controller implements  Initializable {
 	}
 
 	public void funsun(){
-		tSun = new Timer();
-		TimerTask taskSun = new TimerTask() {
+
+		Random rand = new Random();
+
+		Transition sunTokenScheduler = new Transition() {
+			{
+				this.setCycleDuration(Duration.seconds(15));
+				this.setCycleCount(INDEFINITE);
+			}
 			@Override
-			public void run() {
-				//System.out.println("here");
-				Button sunToken = new Button();
-				sunToken.setOnMouseClicked(event -> {
-					changeSunValue(100);
-					sunToken.setVisible(false);
-					myParent.getChildren().remove(sunToken);
-				});
-				Random rand = new Random();
-				double r=25;
-				int x = 326 + rand.nextInt(200);
-				int y = 260 + rand.nextInt(100);
-				sunToken.setShape(new Circle(r));
-				sunToken.setMinSize(2*r, 2*r);
-				sunToken.setMaxSize(2*r, 2*r);
-				sunToken.setLayoutX(x);
-				sunToken.setLayoutY(80.0);
-				sunToken.getStylesheets().add("/sample/sunStyle.css");
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						myParent.getChildren().add(sunToken);
-					}
-				});
-				PathElement[] path = {
-						new MoveTo(x,-100.0),
-						new LineTo(x, y),
-				};
-				Path road = new Path();
-				road.getElements().addAll(path);
-				PathTransition anim = new PathTransition();
-				animation.add(anim);
-				anim.setNode(sunToken);
-				anim.setPath(road);
-				anim.setDuration(new Duration(10000));
-				anim.play();
-				funsun();
+			protected void interpolate(double frac) {
+				if (frac==0){
+					int x = 326 + rand.nextInt(200);
+					SunToken sun = new SunToken(myParent, myCourtyard,x, 30, 350);
+				}
 			}
 		};
-		tSun.schedule(taskSun,9000);
+		sunTokenScheduler.play();
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
