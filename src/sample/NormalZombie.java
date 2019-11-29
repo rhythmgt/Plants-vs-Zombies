@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class NormalZombie extends Zombie implements Serializable {
     NormalZombie(int ind, double i, AnchorPane parent, ArrayList<Transition> animations, Plant[][] Enemies, Courtyard courtYard) {
         super(ind);
+        this.setHp(100);
         myCourtyard = courtYard;
         targetLandMover = courtYard.getLawnMovers()[ind];
         myParent = parent;

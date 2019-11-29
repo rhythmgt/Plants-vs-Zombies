@@ -41,7 +41,7 @@ public class peaAnimation extends Transition {
         for (Zombie myenemy : myenemies){
             if (myshape.getBoundsInParent().intersects(myenemy.getImage().getBoundsInParent())) {
                 System.out.println("Thuk gya");
-                System.out.println("Ho gya");
+                myenemy.getAttacked(10);
                 //myshape.setVisible(false);
                 myParent.getChildren().remove(myshape);
                 this.stop();
