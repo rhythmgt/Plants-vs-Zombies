@@ -48,14 +48,8 @@ public class level1Controller implements  Initializable {
 	public Timer tSun ;
     public ImageView khopdi;
     public ImageView timer;
-	//private ArrayList<ImageView> myZombies;
-	//private ArrayList<Plant> myPlants;
-	//private ArrayList<Zombie> myzombies;
-	private  Courtyard myCourtyard;
 
-	/*public ArrayList<ImageView> getMyZombies() {
-		return myZombies;
-	}*/
+	private  Courtyard myCourtyard;
 
 	public void startMeter(){
 
@@ -275,45 +269,6 @@ public class level1Controller implements  Initializable {
 	}
 
 	public void funzombie(){
-		/*
-		tZombie = new Timer();
-		TimerTask taskZombie = new TimerTask() {
-			@Override
-			public void run() {
-				ImageView zom = new ImageView();
-				zom.setImage(zombie.getImage());
-				zom.setLayoutX(1216.0);
-				zom.setLayoutY(330.0);
-
-				///
-
-				myZombies.add(zom);
-
-				///
-
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						myParent.getChildren().add(zom);
-					}
-				});
-				PathElement[] path1 = {
-						new MoveTo(zom.getX(), zom.getY() + 60),
-						new LineTo(zom.getX() - 900, zom.getY() + 60),
-				};
-				Path road1 = new Path();
-				road1.getElements().addAll(path1);
-				PathTransition anim = new PathTransition();
-				animation.add(anim);
-				anim.setOnFinished(e->endZombie(zom));
-				anim.setNode(zom);
-				anim.setPath(road1);
-				anim.setDuration(new Duration(80000));
-				anim.play();
-				funzombie();
-			}
-		};
-		tZombie.schedule(taskZombie,10000);*/
 
 		Transition zombieCreater = new Transition() {
 			{
@@ -339,36 +294,6 @@ public class level1Controller implements  Initializable {
 			}
 		});
 	}
-	public int tr = 0;
-	/*public void moveLawnmover() {
-		if(tr==0) {
-			PathElement[] path = {
-					new MoveTo(326, 55),
-					new LineTo(1250, 55),
-			};
-			Path road = new Path();
-			road.getElements().addAll(path);
-			PathTransition anim = new PathTransition();
-			animation.add(anim);
-			anim.setOnFinished(e->endLawnmover());
-			anim.setNode(LandMover);
-			anim.setPath(road);
-			anim.setDuration(new Duration(6000));
-			anim.play();
-			tr++;
-		}
-	}
-	private void endLawnmover() {
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				LandMover.setVisible(false);
-				myParent.getChildren().remove(LandMover);
-				moveLawnmover();
-			}
-		});
-	}*/
-
 
 	public void funsun(){
 		tSun = new Timer();
@@ -415,21 +340,12 @@ public class level1Controller implements  Initializable {
 		};
 		tSun.schedule(taskSun,9000);
 	}
-
-
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		animation = new ArrayList<>(0);
-		//myZombies = new ArrayList<>();
-		//myzombies = new ArrayList<>();
-		//myPlants = new ArrayList<>();
 		myCourtyard = new Courtyard(1,myParent, animation);
 		funsun();
 		funzombie();
 		startMeter();
 	}
-
-
 }

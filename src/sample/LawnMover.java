@@ -15,6 +15,7 @@ public class LawnMover {
     private Boolean isPresent = true;
     private CopyOnWriteArrayList<Zombie> zombiesToKill;
     private int row;
+    private Courtyard myCourtyard;
 
     public Boolean getPresent() {
         return isPresent;
@@ -23,7 +24,7 @@ public class LawnMover {
     public ImageView getImage(){
         return myImg;
     }
-    LawnMover(int r, AnchorPane AP, ArrayList<CopyOnWriteArrayList<Zombie>> zmb){
+    LawnMover(int r, AnchorPane AP, ArrayList<CopyOnWriteArrayList<Zombie>> zmb, Courtyard c){
         myParent = AP;
         myImg = new ImageView("/sample/images/landMower.png");
         myImg.setLayoutX(220.0);
@@ -31,6 +32,7 @@ public class LawnMover {
         AP.getChildren().add(myImg);
         myImg.setVisible(true);
         zombiesToKill = zmb.get(r);
+        myCourtyard = c;
     }
 
     public void moveMe(){
@@ -46,10 +48,15 @@ public class LawnMover {
             setCycleDuration(Duration.seconds(10));
             setCycleCount(1);
             position = 220.0;
-            difference = 1250.0 - position;
+            difference = 1260.0 - position;
         }
         @Override
         protected void interpolate(double frac) {
+            if (myImg.getLayoutX()>1254){
+                myParent.getChildren().remove(myImg);
+                this.stop();
+                myCourtyard.removeLandMover(row);
+            }
             myImg.setLayoutX(position + (difference*frac));
             isCollided();
         }

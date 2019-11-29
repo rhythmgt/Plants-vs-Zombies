@@ -21,9 +21,9 @@ public class NormalZombie extends Zombie implements Serializable {
     }
 
     void moveZombie(ArrayList<Transition> animations, Plant[][] Enemies){
-        Transition movingTransition= this.new moveZombieAnimation(myImg.getLayoutX(), myImg.getLayoutX()-900, Enemies[this.getRow()]);
-        movingTransition.setCycleCount(1);
-        animations.add(movingTransition);
-        movingTransition.play();
+        myanimation= this.new moveZombieAnimation(myImg.getLayoutX(), myImg.getLayoutX()-900, Enemies[this.getRow()]);
+        myanimation.setCycleCount(1);
+        animations.add(myanimation);
+        myanimation.play();
     }
 }

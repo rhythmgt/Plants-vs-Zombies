@@ -11,6 +11,7 @@ abstract class Zombie extends Character implements Serializable{
     private int status;
     private int distanceRemaining;
     private int speed;
+    protected  Transition myanimation;
     protected LawnMover targetLandMover;
     public int getSpeed() {
         return speed;
@@ -43,7 +44,9 @@ abstract class Zombie extends Character implements Serializable{
     }
 
     public void killMe(){
+
         myParent.getChildren().remove(myImg);
+        myanimation.stop();
         myCourtyard.removeZombie(getRow(),this);
     }
 
@@ -60,7 +63,12 @@ abstract class Zombie extends Character implements Serializable{
 
         @Override
         protected void interpolate(double frac) {
+
             myImg.setLayoutX(position + (difference*frac));
+            if (myImg.getLayoutX()<318){
+                System.out.println("YOU LOST");
+                this.stop();
+            }
             isCollided();
         }
 

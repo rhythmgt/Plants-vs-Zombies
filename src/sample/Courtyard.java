@@ -86,11 +86,17 @@ public class Courtyard {
     public  void removeZombie(int i, Zombie z){
 
             zombies.get(i).remove(z);
-
+            System.out.println("Zombie Removed");
     }
     private void initializeLandMovers(){
         for (int i =0; i< lawnMovers.length; i++){
-            lawnMovers[i] = new LawnMover(0, myParent, zombies);
+            lawnMovers[i] = new LawnMover(0, myParent, zombies, this);
+        }
+    }
+
+    public void removeLandMover(int i){
+        if (!(i>=this.lawnMovers.length || i<0)){
+            lawnMovers[i] = null;
         }
     }
 
