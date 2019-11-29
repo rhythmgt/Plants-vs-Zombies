@@ -143,7 +143,7 @@ public class Courtyard {
         double y = 330;
         for (int i =0; i< lawnMovers.length; i++){
             y = (vertBounds[i+1]+vertBounds[i])/2;
-            lawnMovers[i] = new LawnMover(0, y-70,myParent, zombies, this);
+            lawnMovers[i] = new LawnMover(i, y-70,myParent, zombies, this);
         }
     }
 
