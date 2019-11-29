@@ -78,6 +78,7 @@ public class Courtyard {
                         if (numSunToken>=50){
                     Plant sunflower = new SunFlower(0, pos-1,x2,330, myParent, this);
                     addPlantToList(sunflower, 0, pos-1);
+
                         changeSunValue(-50);}
 
                     break;

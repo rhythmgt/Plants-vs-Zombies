@@ -116,45 +116,6 @@ public class level1Controller implements  Initializable {
 		((Node)mouseEvent.getSource()).getScene().setRoot((Parent) FXMLLoader.load(getClass().getResource("level1.fxml")));
 	}
 
-	public void addSun(MouseEvent mouseEvent){
-		addSun(570);
-	}
-
-	public void addSun(double x){
-		Button sunToken = new Button();
-		sunToken.setOnMouseClicked(event -> {
-			changeSunValue(100);
-			sunToken.setVisible(false);
-			myParent.getChildren().remove(sunToken);
-		});
-		double r=25;
-		sunToken.setShape(new Circle(r));
-		sunToken.setMinSize(2*r, 2*r);
-		sunToken.setMaxSize(2*r, 2*r);
-		sunToken.setLayoutX(x);
-		sunToken.setLayoutY(80.0);
-		sunToken.getStylesheets().add("/sample/sunStyle.css");
-		myParent.getChildren().add(sunToken);
-		PathElement[] path = {
-				new MoveTo(x,80.0),
-				new LineTo(x, 300),
-		};
-
-		Path road = new Path();
-		road.getElements().addAll(path);
-		PathTransition tanim = new PathTransition();
-		tanim.setNode(sunToken);
-		tanim.setPath(road);
-		tanim.setDuration(new Duration(10000));
-		tanim.play();
-	}
-
-	//relocate this
-	public void changeSunValue(int k){
-		int i = Integer.parseInt(sunCount.getText());
-		i += k;
-		sunCount.setText(Integer.toString(i));
-	}
 
 	public void mousePressedpea(MouseEvent mouseEvent) {
 		startDragX = mouseEvent.getSceneX();
@@ -176,7 +137,7 @@ public class level1Controller implements  Initializable {
 		//double x2 = getPlantingPosition(x);
 		if(x>326.0 && x<1238.0 && y>360.0 && y<463.0) {
 			if(player.getImage()==sunflower.getImage()){
-				sunflowerSun(x,y);
+				//sunflowerSun(x,y);
 				myParent.getChildren().remove(player);
 				//Plant sunFlower = new SunFlower(x2,330, myParent);
 				//myPlants.add(sunFlower);
@@ -192,37 +153,6 @@ public class level1Controller implements  Initializable {
 		}
 		else
 			myParent.getChildren().remove(player);
-	}
-
-	private void sunflowerSun(double x , double y) {
-		Timer timer = new Timer();
-		TimerTask task = new TimerTask() {
-			@Override
-			public void run() {
-				Button sunToken = new Button();
-				sunToken.setOnMouseClicked(event -> {
-					changeSunValue(100);
-					sunToken.setVisible(false);
-					myParent.getChildren().remove(sunToken);
-				});
-				Random rand = new Random();
-				double r=25;
-				sunToken.setShape(new Circle(r));
-				sunToken.setMinSize(2*r, 2*r);
-				sunToken.setMaxSize(2*r, 2*r);
-				sunToken.setLayoutX(x);
-				sunToken.setLayoutY(y);
-				sunToken.getStylesheets().add("/sample/sunStyle.css");
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						myParent.getChildren().add(sunToken);
-					}
-				});
-				sunflowerSun(x,y);
-			}
-		};
-		timer.schedule(task,+10000);
 	}
 
 	public void dragging(MouseEvent mouseEvent) {
