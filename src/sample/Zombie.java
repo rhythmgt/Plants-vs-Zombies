@@ -43,6 +43,7 @@ abstract class Zombie extends Character implements Serializable{
         public void getAttacked(){
     }
 
+    @Override
     public void killMe(){
 
         myParent.getChildren().remove(myImg);
@@ -50,6 +51,27 @@ abstract class Zombie extends Character implements Serializable{
         myCourtyard.removeZombie(getRow(),this);
     }
 
+    private void attackPlant(Plant p){
+        Transition t = new Transition() {
+            {
+                setCycleDuration(Duration.seconds(1));
+                setCycleCount(INDEFINITE);
+            }
+            @Override
+            protected void interpolate(double frac) {
+                if (frac==0){
+                    if (p!=null && p.getHp()>0)
+                    {p.getAttacked(10);
+                    System.out.println("attacking");}
+                    else{
+                        this.stop();
+                        myanimation.play();
+                    }
+                }
+            }
+        };
+        t.play();
+    }
     protected class moveZombieAnimation extends Transition{
         private double position;
         private double difference;
@@ -75,8 +97,10 @@ abstract class Zombie extends Character implements Serializable{
         void isCollided(){
             for (Plant enemy : myEnemies){
                 if (enemy!=null && myImg.getBoundsInParent().intersects(enemy.getImage().getBoundsInParent())){
+
+                    myanimation.pause();
                     System.out.println("I will fight with the plant");
-                    this.pause();
+                    attackPlant(enemy);
                 }
             }
 

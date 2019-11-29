@@ -242,7 +242,7 @@ public class level1Controller implements  Initializable {
 				}
 			flag+=1;
 //			tZombie.cancel();
-			tSun.cancel();
+//			tSun.cancel();
 		}
 		else{
 			flag=0;

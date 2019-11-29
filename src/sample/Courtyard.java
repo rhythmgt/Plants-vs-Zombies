@@ -15,7 +15,7 @@ public class Courtyard {
     private Label sunCount;
     private int numSunToken;
     private LawnMover[] lawnMovers;
-    private Plant[][] plants;
+    private volatile Plant[][] plants;
     private volatile ArrayList<CopyOnWriteArrayList<Zombie>> zombies;
     private double[] mybounds = new double[]{318.0, 427.0, 514.0, 625.0, 730.0, 825.0, 934.0, 1027.0, 1135.0, 1254.0};
     private final AnchorPane myParent;
@@ -75,11 +75,11 @@ public class Courtyard {
                 double x2 = (mybounds[pos] + mybounds[pos-1])/2;
                 switch (k){
                     case 1:
-                    Plant sunflower = new SunFlower(x2,330, myParent);
+                    Plant sunflower = new SunFlower(0, pos-1,x2,330, myParent, this);
                     addPlantToList(sunflower, 0, pos-1);
                     break;
                     case 2:
-                    Plant peaShooter = new PeaShooter(0,pos-1, x2,330, myParent, zombies,myAnimations);
+                    Plant peaShooter = new PeaShooter(0,pos-1, x2,330, myParent, zombies,myAnimations, this);
                     addPlantToList(peaShooter, 0, pos-1);
                 }
             }
@@ -96,6 +96,12 @@ public class Courtyard {
             zombies.get(i).remove(z);
             System.out.println("Zombie Removed");
     }
+
+    public void removePlant(int i, int j){
+        plants[i][j] = null;
+        System.out.println("Plant Removed");
+    }
+
     private void initializeLandMovers(){
         for (int i =0; i< lawnMovers.length; i++){
             lawnMovers[i] = new LawnMover(0, myParent, zombies, this);

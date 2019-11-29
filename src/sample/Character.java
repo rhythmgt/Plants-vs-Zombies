@@ -29,16 +29,18 @@ public abstract class Character implements Serializable {
             return row;
         }
 
-        Character(int i , int j){
-            hp = i ;
-            row = j ;
-        }
+
         Character(int i){
             row = i ;
         }
 
-        public boolean getAttacked(int i){
-            return true;
+        public void getAttacked(int i){
+            this.hp -= i;
+            if (hp<=0){
+                killMe();
+            }
         }
+
+        public abstract void killMe();
 
 }

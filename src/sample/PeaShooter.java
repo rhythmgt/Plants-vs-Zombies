@@ -13,8 +13,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class PeaShooter extends Plant implements Serializable {
     private AnchorPane parent;
     private CopyOnWriteArrayList<Zombie> opponent;
-    PeaShooter(int row, int col, double i, double j, AnchorPane parent, ArrayList<CopyOnWriteArrayList<Zombie>> al, ArrayList<Transition> animations) {
-        super(row, col);
+
+    PeaShooter(int row, int col, double i, double j, AnchorPane parent, ArrayList<CopyOnWriteArrayList<Zombie>> al, ArrayList<Transition> animations, Courtyard yard) {
+        super(row, col, parent, yard);
+        this.setHp(100);
         myImg = new ImageView("/sample/images/plants/peashooter.gif");
         myImg.setLayoutX(i-33.5);
         myImg.setLayoutY(j);

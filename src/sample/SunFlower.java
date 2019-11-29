@@ -7,8 +7,8 @@ import javafx.scene.layout.AnchorPane;
 import java.io.Serializable;
 
 public class SunFlower extends Plant implements Serializable {
-    SunFlower(double i, double j, AnchorPane parent) {
-        super((int)i, (int)j);
+    SunFlower(int row, int col,double i, double j, AnchorPane parent, Courtyard yard) {
+        super(row, col, parent, yard);
         myImg = new ImageView("/sample/images/plants/sunflower.gif");
         myImg.setLayoutX(i-33.5);
         myImg.setLayoutY(j);
