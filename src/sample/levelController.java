@@ -29,7 +29,7 @@ import java.net.URL;
 import java.util.*;
 
 
-public class level1Controller implements  Initializable {
+public class levelController implements  Initializable {
 
 	public javafx.scene.image.ImageView LandMover;
 	public AnchorPane menu;
@@ -87,20 +87,6 @@ public class level1Controller implements  Initializable {
 		PauseBtn.setDisable(true);
 	}
 
-	@FXML
-	public void pauseGame2(MouseEvent mouseEvent) throws IOException, InterruptedException {
-		PathElement[] path = {
-				new MoveTo(256,65),
-				new LineTo(800, 65),
-		};
-		Path road = new Path();
-		road.getElements().addAll(path);
-		PathTransition anim = new PathTransition();
-		anim.setNode(LandMover);
-		anim.setPath(road);
-		anim.setDuration(new Duration(5000));
-		anim.play();
-	}
 
 	public void resumeGame(MouseEvent mouseEvent) {
 		pauser(mouseEvent);
@@ -141,14 +127,14 @@ public class level1Controller implements  Initializable {
 				myParent.getChildren().remove(player);
 				//Plant sunFlower = new SunFlower(x2,330, myParent);
 				//myPlants.add(sunFlower);
-				myCourtyard.addPlant(x,1);
+				myCourtyard.addPlant(x,y,1);
 			}
 			else {
 				x = mouseEvent.getSceneX() + 38.5;
 				myParent.getChildren().remove(player);
 				//PeaShooter PS = new PeaShooter(x2,330, myParent, myzombies,animation);
 				//myPlants.add(PS);
-				myCourtyard.addPlant(x,2);
+				myCourtyard.addPlant(x,y,2);
 			}
 		}
 		else
@@ -209,7 +195,7 @@ public class level1Controller implements  Initializable {
 			@Override
 			protected void interpolate(double frac) {
 				if (frac==0){
-					myCourtyard.addZombie();
+					myCourtyard.addZombie(0);
 				}
 			}
 		} ;
@@ -229,7 +215,7 @@ public class level1Controller implements  Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		animation = new ArrayList<>(0);
-		myCourtyard = new Courtyard(1,myParent, animation, sunCount);
+		myCourtyard = new CourtYard1(myParent, animation, sunCount);
 		funzombie();
 		startMeter();
 	}

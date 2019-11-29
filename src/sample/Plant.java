@@ -31,6 +31,9 @@ public  abstract class Plant extends Character implements Serializable {
 
                 @Override
         public void killMe(){
+                if (myanimation!= null){
+                        myanimation.stop();
+                }
                 myParent.getChildren().remove(myImg);
                 myCourtyard.removePlant(this.getRow(), this.getDist_house());
         }

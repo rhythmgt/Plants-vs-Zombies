@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NormalZombie extends Zombie implements Serializable {
-    NormalZombie(int ind, double i, AnchorPane parent, ArrayList<Transition> animations, Plant[][] Enemies, Courtyard courtYard) {
+    NormalZombie(int ind, double i, double j, AnchorPane parent, ArrayList<Transition> animations, Plant[][] Enemies, Courtyard courtYard) {
         super(ind);
         this.setHp(100);
         myCourtyard = courtYard;
@@ -16,7 +16,7 @@ public class NormalZombie extends Zombie implements Serializable {
         myParent = parent;
         myImg = new ImageView("/sample/images/zombies/zombie.gif");
         myImg.setLayoutX(i-33.5);
-        myImg.setLayoutY(333);
+        myImg.setLayoutY(j);
         parent.getChildren().add(myImg);
         moveZombie(animations, Enemies);
     }

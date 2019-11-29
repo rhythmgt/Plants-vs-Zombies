@@ -11,7 +11,7 @@ abstract class Zombie extends Character implements Serializable{
     private int status;
     private int distanceRemaining;
     private int speed;
-    protected  Transition myanimation;
+
     protected LawnMover targetLandMover;
     public int getSpeed() {
         return speed;

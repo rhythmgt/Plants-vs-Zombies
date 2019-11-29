@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Transition;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -12,7 +13,7 @@ public abstract class Character implements Serializable {
         protected ImageView myImg;
         protected AnchorPane myParent;
         protected Courtyard myCourtyard;
-
+    protected Transition myanimation;
         public ImageView getImage(){
             return myImg;
         }

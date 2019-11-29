@@ -24,11 +24,11 @@ public class LawnMover {
     public ImageView getImage(){
         return myImg;
     }
-    LawnMover(int r, AnchorPane AP, ArrayList<CopyOnWriteArrayList<Zombie>> zmb, Courtyard c){
+    LawnMover(int r,double y, AnchorPane AP, ArrayList<CopyOnWriteArrayList<Zombie>> zmb, Courtyard c){
         myParent = AP;
         myImg = new ImageView("/sample/images/landMower.png");
         myImg.setLayoutX(220.0);
-        myImg.setLayoutY(364.0);
+        myImg.setLayoutY(y);
         AP.getChildren().add(myImg);
         myImg.setVisible(true);
         zombiesToKill = zmb.get(r);

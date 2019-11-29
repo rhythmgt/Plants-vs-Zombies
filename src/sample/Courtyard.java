@@ -12,12 +12,14 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Courtyard {
+    private boolean isLocked;
     private Label sunCount;
     private int numSunToken;
     private LawnMover[] lawnMovers;
     private volatile Plant[][] plants;
     private volatile ArrayList<CopyOnWriteArrayList<Zombie>> zombies;
-    private double[] mybounds = new double[]{318.0, 427.0, 514.0, 625.0, 730.0, 825.0, 934.0, 1027.0, 1135.0, 1254.0};
+    protected double[] mybounds = new double[]{318.0, 427.0, 514.0, 625.0, 730.0, 825.0, 934.0, 1027.0, 1135.0, 1254.0};
+    protected double[] vertBounds;
     private final AnchorPane myParent;
     private ArrayList<Transition> myAnimations;
     private int getPlantingPosition(double d){
@@ -34,6 +36,25 @@ public class Courtyard {
         }
     }
 
+    protected int getVerticalPlantingPos(double d){
+        if (d<vertBounds[0]){
+            return -1;
+        }
+        else{
+            for (int i=1; i<vertBounds.length; i++){
+                if (d<vertBounds[i]){
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+    }
+
+    public int getNumSunToken(){
+        return this.numSunToken;
+    }
+
     Courtyard(int numRows, AnchorPane AP, ArrayList<Transition> anim, Label TokenValue){
         sunCount = TokenValue;
         lawnMovers = new LawnMover[numRows];
@@ -45,7 +66,7 @@ public class Courtyard {
         for (int i=0; i<numRows; i++){
             zombies.add(new CopyOnWriteArrayList<Zombie>());
         }
-        initializeLandMovers();
+        //initializeLandMovers();
         sunGenerator();
     }
 
@@ -68,15 +89,17 @@ public class Courtyard {
         zombies.get(i).add(z);
     }
 
-    public void  addPlant(double d, int k){
+    public void  addPlant(double d,double g, int k){
         int pos = getPlantingPosition(d);
+        int vertpos = getVerticalPlantingPos(g);
         if (pos!=-1){
             if (plants[0][pos-1] ==null ){
                 double x2 = (mybounds[pos] + mybounds[pos-1])/2;
+                double y2 = (vertBounds[vertpos] + vertBounds[vertpos-1])/2;
                 switch (k){
                     case 1:
                         if (numSunToken>=50){
-                    Plant sunflower = new SunFlower(0, pos-1,x2,330, myParent, this);
+                    Plant sunflower = new SunFlower(0, pos-1,x2,y2-65, myParent, this);
                     addPlantToList(sunflower, 0, pos-1);
 
                         changeSunValue(-50);}
@@ -84,16 +107,16 @@ public class Courtyard {
                     break;
                     case 2:
                         if (numSunToken>=100){
-                    Plant peaShooter = new PeaShooter(0,pos-1, x2,330, myParent, zombies,myAnimations, this);
+                    Plant peaShooter = new PeaShooter(0,pos-1, x2,y2-65, myParent, zombies,myAnimations, this);
                     addPlantToList(peaShooter, 0, pos-1);
                         changeSunValue(-100);}
                 }
             }
         }
     }
-    public void addZombie(){
-
-        Zombie NZ = new NormalZombie(0, 1216, myParent, myAnimations, plants, this);
+    public void addZombie(int k){
+        double y1 = (vertBounds[k+1] + vertBounds[k])/2;
+        Zombie NZ = new NormalZombie(k, 1216, y1-65, myParent, myAnimations, plants, this);
         addZombieToList(NZ,0);
 
     }
@@ -108,9 +131,11 @@ public class Courtyard {
         System.out.println("Plant Removed");
     }
 
-    private void initializeLandMovers(){
+    protected void initializeLandMovers(){
+        double y = 330;
         for (int i =0; i< lawnMovers.length; i++){
-            lawnMovers[i] = new LawnMover(0, myParent, zombies, this);
+            y = (vertBounds[i+1]+vertBounds[i])/2;
+            lawnMovers[i] = new LawnMover(0, y-70,myParent, zombies, this);
         }
     }
 

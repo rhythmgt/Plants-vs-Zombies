@@ -45,6 +45,7 @@ public class PeaShooter extends Plant implements Serializable {
                 }
 
             };
+            myanimation = abc;
             animations.add(abc);
             abc.setCycleCount(Animation.INDEFINITE);
             abc.play();
