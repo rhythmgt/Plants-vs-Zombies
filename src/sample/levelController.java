@@ -46,6 +46,7 @@ public class levelController implements  Initializable {
 	public ImageView peaball;
 	public ImageView zombie;
 	public ImageView sunflower;
+	public ImageView potato;
 	public Timer tZombie;
 	public Timer tSun ;
     public ImageView khopdi;
@@ -117,6 +118,18 @@ public class levelController implements  Initializable {
 		player.setLayoutX(mouseEvent.getSceneX()-38.5);
 		player.setLayoutY(mouseEvent.getSceneY()-77);
 	}
+	public void mousePressedPotato(MouseEvent mouseEvent) {
+		startDragX = mouseEvent.getSceneX();
+		startDragY = mouseEvent.getSceneY();
+		player= new ImageView();
+		player.setImage(potato.getImage());
+		player.setFitWidth(77.0);
+		player.setFitHeight(77.0);
+		player.setVisible(true);
+		myParent.getChildren().add(player);
+		player.setLayoutX(mouseEvent.getSceneX()-38.5);
+		player.setLayoutY(mouseEvent.getSceneY()-77);
+	}
 
 	public void mousePressedpea(MouseEvent mouseEvent) {
 		startDragX = mouseEvent.getSceneX();
@@ -158,6 +171,10 @@ public class levelController implements  Initializable {
 			else if(player.getImage() == wallnut.getImage()){
 				myParent.getChildren().remove(player);
 				myCourtyard.addPlant(x,y,3);
+			}
+			else{
+				myParent.getChildren().remove(player);
+				myCourtyard.addPlant(x,y,5);
 			}
 
 

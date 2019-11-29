@@ -124,6 +124,12 @@ public class Courtyard {
                             Plant bomb = new CherryBomb(vertpos-1,pos-1, x2,y2-65, myParent, this, zombies);
                             addPlantToList(bomb, vertpos-1, pos-1);
                             changeSunValue(-150);}
+                        break;
+                    case 5:
+                        if (numSunToken>=150){
+                            Plant bomb = new PotatoMine(vertpos-1,pos-1, x2,y2-65, myParent, this, zombies);
+                            addPlantToList(bomb, vertpos-1, pos-1);
+                            changeSunValue(-150);}
                 }
             }
         }
@@ -141,8 +147,9 @@ public class Courtyard {
     }
 
     public void removePlant(int i, int j){
+        if (plants[i][j]!=null){
         plants[i][j] = null;
-        System.out.println("Plant Removed");
+        System.out.println("Plant Removed");}
     }
 
     protected void initializeLandMovers(){

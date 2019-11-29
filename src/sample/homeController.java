@@ -48,9 +48,13 @@ public class homeController implements Initializable {
 			((Node)actionEvent.getSource()).getScene().setRoot(root3);
 
 		}
-		else{
+		else if (Level==4){
 			Parent root4 = FXMLLoader.load(getClass().getResource("level4.fxml"));
 			((Node)actionEvent.getSource()).getScene().setRoot(root4);
+		}
+		else{
+			Parent root5 = FXMLLoader.load(getClass().getResource("level5.fxml"));
+			((Node)actionEvent.getSource()).getScene().setRoot(root5);
 		}
 
 	}
