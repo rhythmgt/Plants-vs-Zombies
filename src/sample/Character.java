@@ -8,7 +8,8 @@ import java.io.Serializable;
 
 public abstract class Character implements Serializable {
 
-        private int hp;
+        protected int hp;
+        protected int maxHp;
         private final int row;
         protected ImageView myImg;
         protected AnchorPane myParent;

@@ -15,8 +15,7 @@ public class PeaShooter extends Plant implements Serializable {
     private CopyOnWriteArrayList<Zombie> opponent;
 
     PeaShooter(int row, int col, double i, double j, AnchorPane parent, ArrayList<CopyOnWriteArrayList<Zombie>> al, ArrayList<Transition> animations, Courtyard yard) {
-        super(row, col, parent, yard);
-        this.setHp(100);
+        super(row, col, parent, yard, 100);
         myImg = new ImageView("/sample/images/plants/peashooter.gif");
         myImg.setLayoutX(i-33.5);
         myImg.setLayoutY(j);

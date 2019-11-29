@@ -37,10 +37,12 @@ public  abstract class Plant extends Character implements Serializable {
                 myParent.getChildren().remove(myImg);
                 myCourtyard.removePlant(this.getRow(), this.getDist_house());
         }
-        Plant(int i, int j, AnchorPane parent, Courtyard yard){
+        Plant(int i, int j, AnchorPane parent, Courtyard yard, int hp){
                 super(i);
                 this.dist_house = j;
                 this.myParent = parent;
                 this.myCourtyard = yard;
+                this.maxHp = hp;
+                this.hp = hp;
         }
 }

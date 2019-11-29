@@ -39,6 +39,7 @@ public class levelController implements  Initializable {
 	public ImageView peaCard;
 	public double startDragX , startDragY;
 	public ImageView peashooter;
+	public ImageView wallnut;
 	public ArrayList<Transition> animation ;
 	public ImageView player;
 	public ImageView peaball;
@@ -103,6 +104,19 @@ public class levelController implements  Initializable {
 	}
 
 
+	public void mousePressedNut(MouseEvent mouseEvent) {
+		startDragX = mouseEvent.getSceneX();
+		startDragY = mouseEvent.getSceneY();
+		player= new ImageView();
+		player.setImage(wallnut.getImage());
+		player.setFitWidth(77.0);
+		player.setFitHeight(77.0);
+		player.setVisible(true);
+		myParent.getChildren().add(player);
+		player.setLayoutX(mouseEvent.getSceneX()-38.5);
+		player.setLayoutY(mouseEvent.getSceneY()-77);
+	}
+
 	public void mousePressedpea(MouseEvent mouseEvent) {
 		startDragX = mouseEvent.getSceneX();
 		startDragY = mouseEvent.getSceneY();
@@ -129,12 +143,16 @@ public class levelController implements  Initializable {
 				//myPlants.add(sunFlower);
 				myCourtyard.addPlant(x,y,1);
 			}
-			else {
+			else if (player.getImage()==peashooter.getImage()){
 				//x = mouseEvent.getSceneX() + 38.5;
 				myParent.getChildren().remove(player);
 				//PeaShooter PS = new PeaShooter(x2,330, myParent, myzombies,animation);
 				//myPlants.add(PS);
 				myCourtyard.addPlant(x,y,2);
+			}
+			else if(player.getImage() == wallnut.getImage()){
+				myParent.getChildren().remove(player);
+				myCourtyard.addPlant(x,y,3);
 			}
 		}
 		else

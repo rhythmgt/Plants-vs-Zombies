@@ -111,6 +111,13 @@ public class Courtyard {
                     Plant peaShooter = new PeaShooter(vertpos-1,pos-1, x2,y2-65, myParent, zombies,myAnimations, this);
                     addPlantToList(peaShooter, vertpos-1, pos-1);
                         changeSunValue(-100);}
+                        break;
+                    case 3:
+
+                        if (numSunToken>=50){
+                            Plant wallnut = new Wallnut(vertpos-1,pos-1, x2,y2-65, myParent, this);
+                            addPlantToList(wallnut, vertpos-1, pos-1);
+                            changeSunValue(-50);}
                 }
             }
         }
