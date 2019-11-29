@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class PeaShooter extends Plant implements Serializable {
     private AnchorPane parent;
     private ArrayList<Zombie> opponent;
-    PeaShooter(double i, double j, AnchorPane parent, ArrayList<Zombie> al, ArrayList<Transition> animations) {
-        super((int)i, (int)j);
+    PeaShooter(int row, int col, double i, double j, AnchorPane parent, ArrayList<ArrayList<Zombie>> al, ArrayList<Transition> animations) {
+        super(row, col);
         myImg = new ImageView("/sample/images/plants/peashooter.gif");
         myImg.setLayoutX(i-33.5);
         myImg.setLayoutY(j);
         this.parent = parent;
         this.parent.getChildren().add(myImg);
-        this.opponent = al;
+        this.opponent = al.get(row);
         try {
             shootPea(animations);
         }

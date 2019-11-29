@@ -48,12 +48,14 @@ public class level1Controller implements  Initializable {
 	public Timer tSun ;
     public ImageView khopdi;
     public ImageView timer;
-	private ArrayList<ImageView> myZombies;
-	private ArrayList<Plant> myPlants;
-	private ArrayList<Zombie> myzombies;
-	public ArrayList<ImageView> getMyZombies() {
+	//private ArrayList<ImageView> myZombies;
+	//private ArrayList<Plant> myPlants;
+	//private ArrayList<Zombie> myzombies;
+	private  Courtyard myCourtyard;
+
+	/*public ArrayList<ImageView> getMyZombies() {
 		return myZombies;
-	}
+	}*/
 
 	public void startMeter(){
 
@@ -175,18 +177,22 @@ public class level1Controller implements  Initializable {
 	public void mouseReleased(MouseEvent mouseEvent) throws InterruptedException {
 		double x = mouseEvent.getSceneX();
 		double y = mouseEvent.getSceneY();
+
+		//double x2 = getPlantingPosition(x);
 		if(x>326.0 && x<1238.0 && y>360.0 && y<463.0) {
 			if(player.getImage()==sunflower.getImage()){
 				sunflowerSun(x,y);
 				myParent.getChildren().remove(player);
-				Plant sunFlower = new SunFlower(x,330, myParent);
-				myPlants.add(sunFlower);
+				//Plant sunFlower = new SunFlower(x2,330, myParent);
+				//myPlants.add(sunFlower);
+				myCourtyard.addPlant(x,1);
 			}
 			else {
 				x = mouseEvent.getSceneX() + 38.5;
 				myParent.getChildren().remove(player);
-				PeaShooter PS = new PeaShooter(x,330, myParent, myzombies,animation);
-				myPlants.add(PS);
+				//PeaShooter PS = new PeaShooter(x2,330, myParent, myzombies,animation);
+				//myPlants.add(PS);
+				myCourtyard.addPlant(x,2);
 			}
 		}
 		else
@@ -317,8 +323,8 @@ public class level1Controller implements  Initializable {
 			@Override
 			protected void interpolate(double frac) {
 				if (frac==0){
-				Zombie NZ = new NormalZombie(1216, myParent, animation, myPlants);
-				myzombies.add(NZ);}
+					myCourtyard.addZombie();
+				}
 			}
 		} ;
 		zombieCreater.play();
@@ -414,13 +420,15 @@ public class level1Controller implements  Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
+		animation = new ArrayList<>(0);
+		//myZombies = new ArrayList<>();
+		//myzombies = new ArrayList<>();
+		//myPlants = new ArrayList<>();
+		myCourtyard = new Courtyard(1,myParent, animation);
 		funsun();
 		funzombie();
 		startMeter();
-		animation = new ArrayList<>(0);
-		myZombies = new ArrayList<>();
-		myzombies = new ArrayList<>();
-		myPlants = new ArrayList<>();
 	}
 
 

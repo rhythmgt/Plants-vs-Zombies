@@ -46,8 +46,8 @@ abstract class Zombie extends Character implements Serializable{
     protected class moveZombieAnimation extends Transition{
         private double position;
         private double difference;
-        private ArrayList<Plant> myEnemies;
-        moveZombieAnimation(double startPoint, double endPoint, ArrayList<Plant> Enemies){
+        private Plant[] myEnemies;
+        moveZombieAnimation(double startPoint, double endPoint, Plant[] Enemies){
             setCycleDuration(Duration.seconds(50));
             position = startPoint;
             difference =endPoint-startPoint;
@@ -62,7 +62,7 @@ abstract class Zombie extends Character implements Serializable{
 
         void isCollided(){
             for (Plant enemy : myEnemies){
-                if (myImg.getBoundsInParent().intersects(enemy.getImage().getBoundsInParent())){
+                if (enemy!=null && myImg.getBoundsInParent().intersects(enemy.getImage().getBoundsInParent())){
                     System.out.println("I will fight with the plant");
                     this.pause();
                 }
