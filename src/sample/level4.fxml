@@ -46,6 +46,37 @@
             <font>
                 <Font size="20.0" />
             </font></Button>
+        <AnchorPane fx:id="winMenu" layoutX="487.0" layoutY="204.0" prefHeight="363.0" prefWidth="580.0" style="-fx-background-color: LIGHTSTEELBLUE; " visible="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+                <ImageView fitHeight="363.0" fitWidth="580.0">
+                    <image>
+                        <Image url="@images/gameOver2.jpg" />
+                    </image>
+                </ImageView>
+                <VBox depthTest="ENABLE" layoutX="411.0" layoutY="67.0" prefHeight="230.0" prefWidth="143.0">
+                    <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#restartLevel" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="RESTART LEVEL" textFill="#148a51">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#backtomenu" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="GO TO MENU " textFill="#148a51">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Button>
+
+                        <Button mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="68.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="EXIT" textFill="#148a51">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Button>
+                    </children></VBox>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </AnchorPane>
         <AnchorPane fx:id="menu" layoutX="574.0" layoutY="204.0" prefHeight="314.0" prefWidth="232.0" style="-fx-background-color: LIGHTSTEELBLUE; " visible="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
             <children>
                 <ImageView fitHeight="316.0" fitWidth="231.0">

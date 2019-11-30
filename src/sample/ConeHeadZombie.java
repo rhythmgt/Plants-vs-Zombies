@@ -8,18 +8,15 @@ import javafx.scene.layout.AnchorPane;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class NormalZombie extends Zombie implements Serializable {
-    NormalZombie(int ind, double i, double j, AnchorPane parent, ArrayList<Transition> animations, Plant[][] Enemies, Courtyard courtYard) {
-        super(ind,100, parent, courtYard);
-
+public class ConeHeadZombie extends Zombie implements Serializable {
+    ConeHeadZombie(int ind, double i, double j, AnchorPane parent, ArrayList<Transition> animations, Plant[][] Enemies, Courtyard courtYard) {
+        super(ind, 200, parent, courtYard);
         targetLandMover = courtYard.getLawnMovers()[ind];
-        myParent = parent;
-        myImg = new ImageView("/sample/images/zombies/zombie.gif");
-        moving1 = new Image("/sample/images/zombies/zombie.gif");
-        moving2 = new Image("/sample/images/zombies/zombie.gif");
-        fightImage1 = new Image("/sample/images/zombies/ZombieAttack.gif");
+        myImg = new ImageView("/sample/images/zombies/ConeheadZombie.gif");
+        moving1 = new Image("/sample/images/zombies/ConeheadZombie.gif");
+        moving2 = new Image("/sample/images/zombies/zombie_normal.gif");
+        fightImage1 = new Image("/sample/images/zombies/ConeheadZombieAttack.gif");
         fightImage2 = new Image("/sample/images/zombies/ZombieAttack.gif");
-
         myImg.setLayoutX(i-33.5);
         myImg.setLayoutY(j-20);
         myImg.setScaleY(0.8*myImg.getScaleY());
@@ -33,4 +30,7 @@ public class NormalZombie extends Zombie implements Serializable {
         animations.add(myanimation);
         myanimation.play();
     }
+
+
+
 }

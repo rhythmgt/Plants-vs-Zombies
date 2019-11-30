@@ -51,6 +51,7 @@ public class levelController implements  Initializable {
 	public Timer tSun ;
     public ImageView khopdi;
     public ImageView timer;
+	public AnchorPane winMenu;
 
 	protected   Courtyard myCourtyard;
 
@@ -239,8 +240,15 @@ public class levelController implements  Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		animation = new ArrayList<>(0);
-		myCourtyard = new CourtYard1(myParent, animation, sunCount);
+		myCourtyard = new CourtYard1(myParent, animation, sunCount, winMenu);
 
 		startMeter();
 	}
+	public void backtomenu(MouseEvent mouseEvent) throws IOException {
+		Parent root2 = FXMLLoader.load(getClass().getResource("selectLevel.fxml"));
+		((Node)mouseEvent.getSource()).getScene().setRoot(root2);
+		root2.getStylesheets().add(getClass().getResource("buttonStyle2.css").toString());
+	}
+
+
 }

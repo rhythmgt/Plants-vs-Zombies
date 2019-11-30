@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 public class Level5Controller extends levelController {
     public void initialize(URL location, ResourceBundle resources) {
         animation = new ArrayList<>(0);
-        myCourtyard = new CourtYard5(myParent, animation, sunCount);
+        myCourtyard = new CourtYard5(myParent, animation, sunCount, winMenu);
 
         startMeter();
     }

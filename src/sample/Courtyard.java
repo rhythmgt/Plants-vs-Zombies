@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Courtyard {
+    private transient AnchorPane endMenu;
     private boolean isLocked;
     private Label sunCount;
     private int numSunToken;
@@ -55,10 +57,10 @@ public class Courtyard {
         return this.numSunToken;
     }
 
-    Courtyard(int numRows, AnchorPane AP, ArrayList<Transition> anim, Label TokenValue){
+    Courtyard(int numRows, AnchorPane AP, ArrayList<Transition> anim, Label TokenValue, AnchorPane menu){
         sunCount = TokenValue;
         lawnMovers = new LawnMover[numRows];
-
+        endMenu = menu;
         plants = new Plant[numRows][9];
         zombies = new ArrayList<>();
         myParent = AP;
@@ -150,7 +152,7 @@ public class Courtyard {
     }
     public void addZombie(int k){
         double y1 = (vertBounds[k+1] + vertBounds[k])/2;
-        Zombie NZ = new NormalZombie(k, 1216, y1-65, myParent, myAnimations, plants, this);
+        Zombie NZ = new ConeHeadZombie(k, 1216, y1-65, myParent, myAnimations, plants, this);
         addZombieToList(NZ,0);
 
     }
@@ -235,6 +237,14 @@ public class Courtyard {
             t.play();
             myAnimations.add(t);
         }
+    }
+    public void gameLost(){
+        for(int i=0 ; i<myAnimations.size() ; i++)
+            if(myAnimations.get(i).getStatus() == Animation.Status.RUNNING)
+                myAnimations.get(i).stop();
+        endMenu.setVisible(true);
+
+        endMenu.toFront();
     }
 
 }

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class Courtyard2 extends Courtyard {
 
-    Courtyard2(AnchorPane AP, ArrayList<Transition> anim, Label TokenValue) {
-        super(3, AP, anim, TokenValue);
+    Courtyard2(AnchorPane AP, ArrayList<Transition> anim, Label TokenValue, AnchorPane menu) {
+        super(3, AP, anim, TokenValue, menu);
         mybounds = new double[]{308.0, 412.0, 512.0, 606.0, 715.0, 815.0, 917.0, 1012.0, 1123.0, 1223.0};
         vertBounds = new double[]{213.0 ,333.0,457.0,582.0};
         initializeLandMovers();

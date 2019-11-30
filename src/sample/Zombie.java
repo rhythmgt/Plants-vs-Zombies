@@ -1,9 +1,11 @@
 package sample;
 
 import javafx.animation.Transition;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-import javax.swing.text.html.ImageView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,6 +13,10 @@ abstract class Zombie extends Character implements Serializable{
     private int status;
     private int distanceRemaining;
     private int speed;
+    protected Image moving1;
+    protected Image fightImage1;
+    protected Image fightImage2;
+    protected Image moving2;
 
     protected LawnMover targetLandMover;
     public int getSpeed() {
@@ -37,10 +43,24 @@ abstract class Zombie extends Character implements Serializable{
         this.distanceRemaining = distanceRemaining;
     }
 
-    Zombie(int i) {
+    Zombie(int i, int maxhp, AnchorPane parent, Courtyard yard) {
         super(i);
+        this.maxHp = maxhp;
+        this.setHp(maxhp);
+        myParent = parent;
+        this.myCourtyard = yard;
+
     }
-        public void getAttacked(){
+
+    @Override
+    public void getAttacked(int i){
+        this.hp -= i;
+        if (hp<=0){
+            killMe();
+        }
+        if (hp<0.5*maxHp){
+            myImg.setImage(moving2);
+        }
     }
 
     @Override
@@ -51,9 +71,15 @@ abstract class Zombie extends Character implements Serializable{
         myCourtyard.removeZombie(getRow(),this);
     }
 
-    private void attackPlant(Plant p){
+    protected void attackPlant(Plant p){
         Transition t = new Transition() {
             {
+                if (getHp()<0.5*maxHp){
+                    myImg.setImage(fightImage2);
+                }
+                else{
+                    myImg.setImage(fightImage1);
+                }
                 setCycleDuration(Duration.seconds(1));
                 setCycleCount(INDEFINITE);
             }
@@ -73,6 +99,12 @@ abstract class Zombie extends Character implements Serializable{
                     }
                     else{
                         this.stop();
+                        if (hp<0.5*maxHp){
+                            myImg.setImage(moving2);
+                        }
+                        else{
+                            myImg.setImage(moving1);
+                        }
                         myanimation.play();
                     }
                 }
@@ -89,6 +121,7 @@ abstract class Zombie extends Character implements Serializable{
             position = startPoint;
             difference =endPoint-startPoint;
             myEnemies = Enemies;
+
         }
 
         @Override
@@ -97,6 +130,7 @@ abstract class Zombie extends Character implements Serializable{
             myImg.setLayoutX(position + (difference*frac));
             if (myImg.getLayoutX()<318){
                 System.out.println("YOU LOST");
+                myCourtyard.gameLost();
                 this.stop();
             }
             isCollided();
