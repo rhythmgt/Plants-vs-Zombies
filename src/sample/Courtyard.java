@@ -99,7 +99,7 @@ public abstract class Courtyard implements Serializable {
         zombies.get(i).add(z);
     }
 
-    public void  addPlant(double d,double g, int k){
+    public boolean  addPlant(double d,double g, int k){
         int pos = getPlantingPosition(d);
         int vertpos = getVerticalPlantingPos(g);
         if (pos!=-1){
@@ -126,39 +126,48 @@ public abstract class Courtyard implements Serializable {
                     t.play();
                     myAnimations.add(t);
                     sunflower.setMyanimation(t);
-                        changeSunValue(-50);}
+                        changeSunValue(-50);
+                            return true;}
 
                     break;
                     case 2:
                         if (numSunToken>=100){
                     Plant peaShooter = new PeaShooter(vertpos-1,pos-1, x2,y2-65, myParent, zombies,myAnimations, this);
                     addPlantToList(peaShooter, vertpos-1, pos-1);
-                        changeSunValue(-100);}
+                        changeSunValue(-100);
+                            return true;}
                         break;
                     case 3:
 
                         if (numSunToken>=50){
                             Plant wallnut = new Wallnut(vertpos-1,pos-1, x2,y2-65, myParent, this);
                             addPlantToList(wallnut, vertpos-1, pos-1);
-                            changeSunValue(-50);}
+                            changeSunValue(-50);
+                            return true;}
                         break;
                     case 4:
                         if (numSunToken>=150){
                             Plant bomb = new CherryBomb(vertpos-1,pos-1, x2,y2-65, myParent, this, zombies);
                             addPlantToList(bomb, vertpos-1, pos-1);
-                            changeSunValue(-150);}
+                            changeSunValue(-150);
+                            return true;}
                         break;
                     case 5:
                         if (numSunToken>=150){
                             Plant bomb = new PotatoMine(vertpos-1,pos-1, x2,y2-65, myParent, this, zombies);
                             addPlantToList(bomb, vertpos-1, pos-1);
-                            changeSunValue(-150);}
+                            changeSunValue(-150);
+                        return true;}
                 }
             }
+
+
         }
+        return false;
     }
     public void addZombie(int k){
         double y1 = (vertBounds[k+1] + vertBounds[k])/2;
+
         Zombie NZ = new NormalZombie(k, 1216, y1-65, myParent, myAnimations, plants, this);
         addZombieToList(NZ,0);
 
@@ -177,6 +186,7 @@ public abstract class Courtyard implements Serializable {
         for(int i=0 ; i<myAnimations.size() ; i++)
             if(myAnimations.get(i).getStatus() == Animation.Status.RUNNING)
                 myAnimations.get(i).stop();
+        winMenu.setVisible(true);
         winMenu.setVisible(true);
         winMenu.toFront();
 

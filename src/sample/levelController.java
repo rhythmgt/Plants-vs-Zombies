@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -145,35 +146,53 @@ public class levelController implements  Initializable {
 		double x = mouseEvent.getSceneX();
 		double y = mouseEvent.getSceneY();
 		myParent.getChildren().remove(player);
-		//double x2 = getPlantingPosition(x);
 		if (x > 308.0 && x < 1223.0 && y > 98.0 && y < 697.0) {
 			if (player.getImage() == peashooter.getImage()) {
-				//x = mouseEvent.getSceneX() + 38.5;
 				myParent.getChildren().remove(player);
-				//PeaShooter PS = new PeaShooter(x2,330, myParent, myzombies,animation);
-				//myPlants.add(PS);
-				myCourtyard.addPlant(x, y, 2);
-			} else if (player.getImage() == sunflower.getImage()) {
-				//sunflowerSun(x,y);
-				myParent.getChildren().remove(player);
-				//Plant sunFlower = new SunFlower(x2,330, myParent);
-				//myPlants.add(sunFlower);
-				myCourtyard.addPlant(x, y, 1);
+				if(myCourtyard.addPlant(x, y, 2)==true)
+					cardEnabler(peaCard , 5000);
 			}
-
-		else if (player.getImage() == cherrybomb.getImage()) {
-			myParent.getChildren().remove(player);
-			myCourtyard.addPlant(x, y, 4);
-		} else if (player.getImage() == wallnut.getImage()) {
-			myParent.getChildren().remove(player);
-			myCourtyard.addPlant(x, y, 3);
-		} else {
-			myParent.getChildren().remove(player);
-			myCourtyard.addPlant(x, y, 5);
+			else if (player.getImage() == sunflower.getImage()) {
+				myParent.getChildren().remove(player);
+				if(myCourtyard.addPlant(x, y, 1)==true)
+					cardEnabler(sunflower , 5000);
+			}
+			else if (player.getImage() == cherrybomb.getImage()) {
+				myParent.getChildren().remove(player);
+				if(myCourtyard.addPlant(x, y, 4)==true)
+					cardEnabler(cherrybomb , 5000);
+			}
+			else if (player.getImage() == wallnut.getImage()) {
+				myParent.getChildren().remove(player);
+				if(myCourtyard.addPlant(x, y, 3)==true)
+					cardEnabler(wallnut , 5000);
+			}
+			else {
+				myParent.getChildren().remove(player);
+				if(myCourtyard.addPlant(x, y, 5)==true)
+					cardEnabler(potato , 5000);
+			}
 		}
-	}
 		else
 			myParent.getChildren().remove(player);
+	}
+
+	public void cardEnabler(ImageView im , int x){
+		im.setDisable(true);
+		ColorAdjust colorAdjust = new ColorAdjust();
+		colorAdjust.setBrightness(-0.6);
+		im.setEffect(colorAdjust);
+		new Timer().schedule(
+				new TimerTask() {
+					@Override
+					public void run() {
+						ColorAdjust colorAdjust = new ColorAdjust();
+						colorAdjust.setBrightness(0.0);
+						im.setEffect(colorAdjust);
+						System.out.println("ping");
+						im.setDisable(false);
+					}
+				}, x);
 	}
 
 	public void dragging(MouseEvent mouseEvent) {
