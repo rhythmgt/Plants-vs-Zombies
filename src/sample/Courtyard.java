@@ -176,7 +176,7 @@ public abstract class Courtyard implements Serializable {
 
             zombies.get(i).remove(z);
             System.out.println("Zombie Removed");
-            if(animationState==0){
+            if(animationState==0 && zombies.size()==0){
                 gamewon();
             }
     }
