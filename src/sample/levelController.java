@@ -104,8 +104,10 @@ public class levelController implements  Initializable {
 	}
 
 	public void restartLevel(MouseEvent mouseEvent) throws IOException {
-		((Node)mouseEvent.getSource()).getScene().setRoot((Parent) FXMLLoader.load(getClass().getResource("level1.fxml")));
-	}
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("level1.fxml"));
+		Parent root = (Parent) loader.load();
+		((levelController) loader.getController()).init(myGame);
+		((Node) mouseEvent.getSource()).getScene().setRoot(root);	}
 
 
 	public void mousePressedNut(MouseEvent mouseEvent) {

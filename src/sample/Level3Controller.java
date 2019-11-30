@@ -1,7 +1,12 @@
 package sample;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -25,4 +30,9 @@ public class Level3Controller extends levelController {
         myGame.addCourtyard(myLevel, myCourtyard);
         startMeter();
     }
+    public void restartLevel(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("level3.fxml"));
+        Parent root = (Parent) loader.load();
+        ((levelController) loader.getController()).init(myGame);
+        ((Node) mouseEvent.getSource()).getScene().setRoot(root);	}
 }
