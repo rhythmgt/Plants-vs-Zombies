@@ -66,9 +66,15 @@
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="SAVE AND EXIT" textFill="#148a51">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Button>
+
                         <Button mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="68.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="EXIT" textFill="#148a51">
                             <font>
-                                <Font name="System Bold" size="16.0" />
+                                <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
                     </children></VBox>
@@ -76,8 +82,7 @@
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
-        </AnchorPane>
-        <!--<Button layoutX="1130.0" layoutY="593.0" mnemonicParsing="false" onMouseClicked="#addSun" prefHeight="60.0" prefWidth="104.0" stylesheets="@effects.css" text="Suraj" />-->
+        </AnchorPane>        <!--<Button layoutX="1130.0" layoutY="593.0" mnemonicParsing="false" onMouseClicked="#addSun" prefHeight="60.0" prefWidth="104.0" stylesheets="@effects.css" text="Suraj" />-->
         <ImageView fx:id="LandMover1" fitHeight="47.0" fitWidth="164.0" layoutX="53.0" layoutY="30.0">
             <image>
                 <Image url="@images/sunMeter.png" />

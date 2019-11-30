@@ -21,7 +21,7 @@ public class Courtyard {
     protected double[] mybounds = new double[]{318.0, 427.0, 514.0, 625.0, 730.0, 825.0, 934.0, 1027.0, 1135.0, 1254.0};
     protected double[] vertBounds;
     private final AnchorPane myParent;
-    private ArrayList<Transition> myAnimations;
+    protected ArrayList<Transition> myAnimations;
     private int getPlantingPosition(double d){
         if (d<mybounds[0]){
             return -1;
@@ -115,6 +115,7 @@ public class Courtyard {
                         }
                     };
                     t.play();
+                    myAnimations.add(t);
                     sunflower.setMyanimation(t);
                         changeSunValue(-50);}
 
@@ -196,6 +197,7 @@ public class Courtyard {
             }
         };
         sunTokenScheduler.play();
+        myAnimations.add(sunTokenScheduler);
     }
 
     public void changeSunValue(int i) {
@@ -231,6 +233,7 @@ public class Courtyard {
                 }
             };
             t.play();
+            myAnimations.add(t);
         }
     }
 

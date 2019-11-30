@@ -41,6 +41,7 @@ public class LawnMover {
         isPresent = false;
         Transition t = new LawnMoverTransition();
         t.play();
+        myCourtyard.myAnimations.add(t);
     }
 
     private class LawnMoverTransition extends Transition{

@@ -149,36 +149,32 @@ public class levelController implements  Initializable {
 		double y = mouseEvent.getSceneY();
 		myParent.getChildren().remove(player);
 		//double x2 = getPlantingPosition(x);
-		if(x>308.0 && x<1223.0 && y>98.0 && y<697.0) {
-			if(player.getImage()==sunflower.getImage()){
-				//sunflowerSun(x,y);
-				myParent.getChildren().remove(player);
-				//Plant sunFlower = new SunFlower(x2,330, myParent);
-				//myPlants.add(sunFlower);
-				myCourtyard.addPlant(x,y,1);
-			}
-			else if (player.getImage()==peashooter.getImage()){
+		if (x > 308.0 && x < 1223.0 && y > 98.0 && y < 697.0) {
+			if (player.getImage() == peashooter.getImage()) {
 				//x = mouseEvent.getSceneX() + 38.5;
 				myParent.getChildren().remove(player);
 				//PeaShooter PS = new PeaShooter(x2,330, myParent, myzombies,animation);
 				//myPlants.add(PS);
-				myCourtyard.addPlant(x,y,2);
-			}
-			else if(player.getImage() == cherrybomb.getImage()){
+				myCourtyard.addPlant(x, y, 2);
+			} else if (player.getImage() == sunflower.getImage()) {
+				//sunflowerSun(x,y);
 				myParent.getChildren().remove(player);
-				myCourtyard.addPlant(x,y,4);
-			}
-			else if(player.getImage() == wallnut.getImage()){
-				myParent.getChildren().remove(player);
-				myCourtyard.addPlant(x,y,3);
-			}
-			else{
-				myParent.getChildren().remove(player);
-				myCourtyard.addPlant(x,y,5);
+				//Plant sunFlower = new SunFlower(x2,330, myParent);
+				//myPlants.add(sunFlower);
+				myCourtyard.addPlant(x, y, 1);
 			}
 
-
+		else if (player.getImage() == cherrybomb.getImage()) {
+			myParent.getChildren().remove(player);
+			myCourtyard.addPlant(x, y, 4);
+		} else if (player.getImage() == wallnut.getImage()) {
+			myParent.getChildren().remove(player);
+			myCourtyard.addPlant(x, y, 3);
+		} else {
+			myParent.getChildren().remove(player);
+			myCourtyard.addPlant(x, y, 5);
 		}
+	}
 		else
 			myParent.getChildren().remove(player);
 	}
@@ -238,16 +234,6 @@ public class levelController implements  Initializable {
 		player.setLayoutX(mouseEvent.getSceneX()-33.5);
 		player.setLayoutY(mouseEvent.getSceneY()-64);
 
-	}
-	protected void endZombie(ImageView zom) {
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				zom.setVisible(false);
-				myParent.getChildren().remove(zom);
-				//moveLawnmover();
-			}
-		});
 	}
 
 	@Override

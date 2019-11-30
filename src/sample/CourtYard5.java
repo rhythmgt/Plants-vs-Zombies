@@ -16,6 +16,7 @@ public class CourtYard5 extends Courtyard {
         initializeLandMovers();
         Transition t = new ZombieCreator();
         t.play();
+        myAnimations.add(t);
     }
 
     private class ZombieCreator extends Transition{

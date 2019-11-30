@@ -90,7 +90,7 @@
                 <Insets />
             </opaqueInsets>
         </AnchorPane>
-        <Button layoutX="1130.0" layoutY="593.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="104.0" stylesheets="@effects.css" text="Suraj" />
+
         <ImageView fitHeight="47.0" fitWidth="164.0" layoutX="53.0" layoutY="30.0">
             <image>
                 <Image url="@images/sunMeter.png" />
@@ -112,19 +112,9 @@
                 <Image url="@images/cards/card_peashooter.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="sunflowerCard" fitHeight="92.0" fitWidth="100.0" layoutX="413.0" onMouseDragged="#dragging" onMousePressed="#mousePressedsunflower" onMouseReleased="#mouseReleased">
-            <image>
-                <Image url="@images/cards/card_sunflower.png" />
-            </image>
-        </ImageView>
         <ImageView fx:id="peashooter" fitHeight="92.0" fitWidth="100.0" layoutX="563.0" layoutY="55.0" visible="false">
             <image>
                 <Image url="@images/plants/peashooter.gif" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="sunflower" fitHeight="67.0" fitWidth="64.0" layoutX="556.0" layoutY="560.0" visible="false">
-            <image>
-                <Image url="@images/plants/sunflower.gif" />
             </image>
         </ImageView>
         <ImageView fx:id="peaball" fitHeight="21.0" fitWidth="21.0" layoutX="1230.0" layoutY="273.0" visible="false">
