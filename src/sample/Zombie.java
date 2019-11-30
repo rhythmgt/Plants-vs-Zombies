@@ -61,9 +61,11 @@ abstract class Zombie extends Character implements Serializable{
             {
                 if (getHp()<0.5*maxHp){
                     myImg.setImage(new Image(s4));
+                    myImg.setLayoutX(myX-100);
                 }
                 else{
                     myImg.setImage(new Image(s3));
+                    myImg.setLayoutX(myX-100);
                 }
                 setCycleDuration(Duration.seconds(1));
                 setCycleCount(INDEFINITE);
@@ -77,9 +79,11 @@ abstract class Zombie extends Character implements Serializable{
                             this.stop();
                             if (hp<0.5*maxHp){
                                 myImg.setImage(new Image(s2));
+                                myImg.setLayoutX(myX);
                             }
                             else{
                                 myImg.setImage(new Image(s1));
+                                myImg.setLayoutX(myX);
                             }
                             myanimation.play();
                         }
@@ -96,9 +100,11 @@ abstract class Zombie extends Character implements Serializable{
                         this.stop();
                         if (hp<0.5*maxHp){
                             myImg.setImage(new Image(s2));
+                            myImg.setLayoutX(myX);
                         }
                         else{
                             myImg.setImage(new Image(s1));
+                            myImg.setLayoutX(myX);
                         }
                         myanimation.play();
                     }

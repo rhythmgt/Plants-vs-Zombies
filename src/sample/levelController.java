@@ -73,7 +73,7 @@ public class levelController implements  Initializable {
                 PathTransition anim2 = new PathTransition();
                 anim2.setNode(khopdi);
                 anim2.setPath(road);
-                anim2.setDuration(new Duration(60000));
+                anim2.setDuration(new Duration(150000));
                 animation.add(anim2);
                 anim2.play();
             }
@@ -266,34 +266,16 @@ public class levelController implements  Initializable {
 		startMeter();*/
 	}
 	public void backtomenu(MouseEvent mouseEvent) throws IOException {
-		Parent root2 = FXMLLoader.load(getClass().getResource("selectLevel.fxml"));
-		((Node)mouseEvent.getSource()).getScene().setRoot(root2);
-		root2.getStylesheets().add(getClass().getResource("buttonStyle2.css").toString());
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+			Parent root = (Parent) loader.load();
+			((homeController) loader.getController()).setLevel(myLevel,myGame);
+			((Node) mouseEvent.getSource()).getScene().setRoot(root);
 	}
-	/*public void isNewGame(Boolean b, Game g){
-		if (b){
-			init(new MouseEvent());
-		}
-		else{
-			restore();
-		}
-	}*/
 
 
 	public void restore(Game g, Courtyard c) throws IOException, ClassNotFoundException {
-		/*myGame = g;
-		ObjectInputStream in = null;
-		String a  = "Hello.ser";
-		try{
-			in = new ObjectInputStream(new FileInputStream(a));
-			myCourtyard = (Courtyard) in.readObject();
-			animation = new ArrayList<>(0);
-			myCourtyard.reInitialize(myParent, sunCount, winMenu, animation);
-			System.out.println("loaded");
-		}
-		finally {
-			in.close();
-		}*/
+
 		myGame = g;
 		myCourtyard = c;
 		animation = new ArrayList<>(0);
@@ -302,20 +284,7 @@ public class levelController implements  Initializable {
 	}
 
 	public void save(MouseEvent mouseEvent) throws IOException {
-		/*ObjectOutputStream out = null;
-		try{
-			String name = "Hello.ser";
-			out = new ObjectOutputStream(
-					new FileOutputStream(name)
 
-			);
-			out.writeObject(myCourtyard);
-		}
-		finally {
-			out.close();
-			((Stage) ((Node)mouseEvent.getSource()).getScene().getWindow()).close();
-
-		}*/
 		myGame.addCourtyard(myLevel, myCourtyard);
 		myGame.Serialize(mouseEvent);
 	}
@@ -327,4 +296,11 @@ public class levelController implements  Initializable {
 		myGame.addCourtyard(myLevel, myCourtyard);
 		startMeter();
 	}
+
+	public void nextLevel(MouseEvent mouseEvent) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("level2.fxml"));
+		Parent root = (Parent) loader.load();
+		((Level2Controller) loader.getController()).init(myGame);
+		((Node) mouseEvent.getSource()).getScene().setRoot(root);	}
+
 }

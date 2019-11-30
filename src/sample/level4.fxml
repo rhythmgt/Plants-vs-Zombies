@@ -72,6 +72,11 @@
                             </font>
                         </Button>
                     </children></VBox>
+                <ImageView fitHeight="126.0" fitWidth="126.0" layoutX="275.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" >
+                    <image>
+                        <Image url="@images/cards/PotatoMineCard.png" />
+                    </image>
+                </ImageView>
             </children>
             <opaqueInsets>
                 <Insets />

@@ -102,7 +102,7 @@ public abstract class Courtyard implements Serializable {
     public boolean  addPlant(double d,double g, int k){
         int pos = getPlantingPosition(d);
         int vertpos = getVerticalPlantingPos(g);
-        if (pos!=-1){
+        if (pos!=-1 && vertpos!=-1){
             if (plants[vertpos-1][pos-1] == null ){
                 double x2 = (mybounds[pos] + mybounds[pos-1])/2;
                 double y2 = (vertBounds[vertpos] + vertBounds[vertpos-1])/2;
@@ -165,11 +165,16 @@ public abstract class Courtyard implements Serializable {
         }
         return false;
     }
-    public void addZombie(int k){
+    public void addZombie(int k, int type){
         double y1 = (vertBounds[k+1] + vertBounds[k])/2;
+        Zombie NZ;
+        if (type==0) {
+            NZ = new NormalZombie(k, 1216, y1 - 65, myParent, myAnimations, plants, this);
+        }
+        else{    NZ = new ConeHeadZombie(k, 1216, y1 - 65, myParent, myAnimations, plants, this);}
 
-        Zombie NZ = new NormalZombie(k, 1216, y1-65, myParent, myAnimations, plants, this);
         addZombieToList(NZ,k);
+
 
     }
     public  void removeZombie(int i, Zombie z) throws IOException {
@@ -228,7 +233,7 @@ public abstract class Courtyard implements Serializable {
             @Override
             protected void interpolate(double frac) {
                 if (frac==0){
-                    int x = 326 + rand.nextInt(200);
+                    int x = 326 + rand.nextInt(800);
                     SunToken sun = new SunToken(x, 30, 350);
                 }
             }
@@ -279,6 +284,7 @@ public abstract class Courtyard implements Serializable {
                 myAnimations.get(i).stop();
         endMenu.setVisible(true);
         endMenu.toFront();
+
     }
 
 

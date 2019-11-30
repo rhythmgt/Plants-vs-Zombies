@@ -33,20 +33,22 @@ public class CourtYard4 extends Courtyard {
     @Override
     void restoreZombieCreator() {
         Transition t = new ZombieCreator();
-        t.play();
+        t.playFrom(new Duration(animState));
         myAnimations.add(t);
     }
     private class ZombieCreator extends Transition{
 
         ZombieCreator(){
             this.setCycleDuration(Duration.seconds(15));
-            this.setCycleCount(4);
+            this.setCycleCount(11);
         }
         @Override
         protected void interpolate(double frac) {
+            animState = this.getCurrentTime().toMillis();
             Random rand = new Random();
             int x = rand.nextInt(5);
-            if (frac==0){addZombie(x);}
+            int y = rand.nextInt(2);
+            if (frac==0){addZombie(x,y);}
         }
     }
 }

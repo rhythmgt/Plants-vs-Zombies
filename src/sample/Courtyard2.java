@@ -40,7 +40,7 @@ public class Courtyard2 extends Courtyard {
 
         ZombieCreator(){
             this.setCycleDuration(Duration.seconds(15));
-            this.setCycleCount(4);
+            this.setCycleCount(9);
         }
         @Override
         protected void interpolate(double frac) {
@@ -48,7 +48,7 @@ public class Courtyard2 extends Courtyard {
             animState = this.getCurrentTime().toMillis();
             Random rand = new Random();
             int x = rand.nextInt(3);
-            if (frac==0){addZombie(x);}
+            if (frac==0){addZombie(x,0);}
         }
     }
 }

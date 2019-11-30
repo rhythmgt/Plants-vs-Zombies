@@ -10,11 +10,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //primaryStage.setMaximized(true);
-        //primaryStage.setFullScreen(true);
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Plants-Vs-Zombies");
         primaryStage.setScene(new Scene(root, 1280,720));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

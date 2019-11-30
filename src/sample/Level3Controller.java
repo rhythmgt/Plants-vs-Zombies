@@ -33,6 +33,13 @@ public class Level3Controller extends levelController {
     public void restartLevel(MouseEvent mouseEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("level3.fxml"));
         Parent root = (Parent) loader.load();
-        ((levelController) loader.getController()).init(myGame);
+        ((Level3Controller) loader.getController()).init(myGame);
         ((Node) mouseEvent.getSource()).getScene().setRoot(root);	}
+
+        public void nextLevel(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("level4.fxml"));
+        Parent root = (Parent) loader.load();
+        ((Level4Controller) loader.getController()).init(myGame);
+        ((Node) mouseEvent.getSource()).getScene().setRoot(root);	}
+
 }
