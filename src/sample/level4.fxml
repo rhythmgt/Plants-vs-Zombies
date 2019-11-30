@@ -132,17 +132,17 @@
                         <Image url="@images/cards/card_sunflower.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="peaCard" fitHeight="92.0" fitWidth="100.0" onMouseDragged="#dragging"  onMousePressed="#mousePressedpea" onMouseReleased="#mouseReleased">
+                <ImageView fx:id="peaCard" fitHeight="92.0" fitWidth="100.0" onMouseDragged="#dragging" onMousePressed="#mousePressedpea" onMouseReleased="#mouseReleased">
                     <image>
                         <Image url="@images/cards/card_peashooter.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="92.0" fitWidth="100.0" onMouseDragged="#dragging"  onMousePressed="#mousePressedNut" onMouseReleased="#mouseReleased">
+                <ImageView fx:id="wallnutCard" fitHeight="92.0" fitWidth="100.0" onMouseDragged="#dragging" onMousePressed="#mousePressedNut" onMouseReleased="#mouseReleased">
                     <image>
                         <Image url="@images/cards/card_wallnut.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="92.0" fitWidth="100.0" onMouseDragged="#dragging"  onMousePressed="#mousePressedbomb" onMouseReleased="#mouseReleased">
+                <ImageView fx:id="cherrybombCard" fitHeight="92.0" fitWidth="100.0" onMouseDragged="#dragging" onMousePressed="#mousePressedbomb" onMouseReleased="#mouseReleased">
                     <image>
                         <Image url="@images/cards/card_cherrybomb.png" />
                     </image>

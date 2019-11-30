@@ -40,7 +40,7 @@ public class CourtYard5 extends Courtyard {
 
         ZombieCreator(){
             this.setCycleDuration(Duration.seconds(15));
-            this.setCycleCount(4);
+            this.setCycleCount(8);
         }
         @Override
         protected void interpolate(double frac) {

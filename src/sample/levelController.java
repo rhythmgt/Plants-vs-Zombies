@@ -27,6 +27,10 @@ import java.util.*;
 public class levelController implements  Initializable {
 
 	public javafx.scene.image.ImageView LandMover;
+	public ImageView sunflowerCards;
+	public ImageView potatoCards;
+	public ImageView cherrybombCards;
+	public ImageView wallnutCards;
 	public AnchorPane menu;
 	public AnchorPane myParent;
 	public Label sunCount;
@@ -155,22 +159,22 @@ public class levelController implements  Initializable {
 			else if (player.getImage() == sunflower.getImage()) {
 				myParent.getChildren().remove(player);
 				if(myCourtyard.addPlant(x, y, 1)==true)
-					cardEnabler(sunflower , 5000);
+					cardEnabler(sunflowerCards , 5000);
 			}
 			else if (player.getImage() == cherrybomb.getImage()) {
 				myParent.getChildren().remove(player);
 				if(myCourtyard.addPlant(x, y, 4)==true)
-					cardEnabler(cherrybomb , 5000);
+					cardEnabler(cherrybombCards , 5000);
 			}
 			else if (player.getImage() == wallnut.getImage()) {
 				myParent.getChildren().remove(player);
 				if(myCourtyard.addPlant(x, y, 3)==true)
-					cardEnabler(wallnut , 5000);
+					cardEnabler(wallnutCards , 5000);
 			}
 			else {
 				myParent.getChildren().remove(player);
 				if(myCourtyard.addPlant(x, y, 5)==true)
-					cardEnabler(potato , 5000);
+					cardEnabler(potatoCards , 5000);
 			}
 		}
 		else
