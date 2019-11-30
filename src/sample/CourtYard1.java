@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CourtYard1 extends Courtyard {
 
@@ -51,7 +52,9 @@ public class CourtYard1 extends Courtyard {
         @Override
         protected void interpolate(double frac) {
             animState = this.getCurrentTime().toMillis();
-            if (frac==0){addZombie(0);}
+            Random rand = new Random();
+            int x = rand.nextInt(1);
+            if (frac==0){addZombie(x);}
         }
     }
 }
