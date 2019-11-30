@@ -18,6 +18,12 @@ public class Courtyard3 extends Courtyard{
         t.play();
         myAnimations.add(t);
     }
+    @Override
+    void restoreZombieCreator() {
+        Transition t = new ZombieCreator();
+        t.play();
+        myAnimations.add(t);
+    }
 
     private class ZombieCreator extends Transition{
 

@@ -14,21 +14,24 @@ public class NormalZombie extends Zombie implements Serializable {
 
         targetLandMover = courtYard.getLawnMovers()[ind];
         myParent = parent;
-        myImg = new ImageView("/sample/images/zombies/zombie.gif");
-        moving1 = new Image("/sample/images/zombies/zombie.gif");
-        moving2 = new Image("/sample/images/zombies/zombie.gif");
-        fightImage1 = new Image("/sample/images/zombies/ZombieAttack.gif");
-        fightImage2 = new Image("/sample/images/zombies/ZombieAttack.gif");
-
-        myImg.setLayoutX(i-33.5);
-        myImg.setLayoutY(j-20);
+        s0 = "/sample/images/zombies/zombie.gif";
+        myImg = new ImageView(s0);
+        s1 = "/sample/images/zombies/zombie.gif";
+        s2 = "/sample/images/zombies/zombie.gif";
+        s3 = "/sample/images/zombies/ZombieAttack.gif";
+        s4 = "/sample/images/zombies/ZombieAttack.gif";
+        myX = i-33.5;
+        myY = j-20;
+        myImg.setLayoutX(myX);
+        myImg.setLayoutY(myY);
         myImg.setScaleY(0.8*myImg.getScaleY());
         parent.getChildren().add(myImg);
-        moveZombie(animations, Enemies);
+        this.enemies = Enemies[this.getRow()];
+        moveZombie(animations);
     }
 
-    void moveZombie(ArrayList<Transition> animations, Plant[][] Enemies){
-        myanimation= this.new moveZombieAnimation(myImg.getLayoutX(), myImg.getLayoutX()-900, Enemies[this.getRow()]);
+    void moveZombie(ArrayList<Transition> animations){
+        myanimation= this.new moveZombieAnimation(myImg.getLayoutX(), myImg.getLayoutX()-900);
         myanimation.setCycleCount(1);
         animations.add(myanimation);
         myanimation.play();

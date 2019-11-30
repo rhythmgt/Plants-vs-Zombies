@@ -6,12 +6,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class LawnMover {
-    private ImageView myImg;
-    private AnchorPane myParent;
+public class LawnMover implements Serializable {
+    private transient ImageView myImg;
+    private  transient AnchorPane myParent;
+    private String s0;
+    private double myX;
+    private double myY;
+    private double mywidth;
+    private double myheight;
     private Boolean isPresent = true;
     private CopyOnWriteArrayList<Zombie> zombiesToKill;
     private int row;
@@ -26,11 +32,16 @@ public class LawnMover {
     }
     LawnMover(int r,double y, AnchorPane AP, ArrayList<CopyOnWriteArrayList<Zombie>> zmb, Courtyard c){
         myParent = AP;
-        myImg = new ImageView("/sample/images/landMower.png");
-        myImg.setLayoutX(220.0);
-        myImg.setLayoutY(y);
-        myImg.setScaleX(myImg.getScaleX()/2);
-        myImg.setScaleY(myImg.getScaleY()/2);
+        s0 = "/sample/images/landMower.png";
+        myImg = new ImageView(s0);
+        myX = 220.0;
+        myY = y;
+        myImg.setLayoutX(myX);
+        myImg.setLayoutY(myY);
+        mywidth = myImg.getScaleX()/2;
+        myheight = myImg.getScaleY()/2;
+        myImg.setScaleX(mywidth);
+        myImg.setScaleY(myheight);
         AP.getChildren().add(myImg);
         myImg.setVisible(true);
         zombiesToKill = zmb.get(r);
@@ -42,6 +53,17 @@ public class LawnMover {
         Transition t = new LawnMoverTransition();
         t.play();
         myCourtyard.myAnimations.add(t);
+    }
+
+    public void restoreMe(AnchorPane pn) {
+        myParent = pn;
+        myImg = new ImageView(s0);
+        myImg.setLayoutX(myX);
+        myImg.setLayoutY(myY);
+        myImg.setLayoutX(mywidth);
+        myImg.setLayoutY(myheight);
+        myParent.getChildren().add(myImg);
+        //addAnimation
     }
 
     private class LawnMoverTransition extends Transition{

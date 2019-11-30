@@ -19,6 +19,13 @@ public class CourtYard1 extends Courtyard {
         myAnimations.add(t);
     }
 
+    @Override
+    void restoreZombieCreator() {
+        Transition t = new ZombieCreator();
+        t.playFrom(new Duration(animState));
+        myAnimations.add(t);
+    }
+
     private class ZombieCreator extends Transition{
 
         ZombieCreator(){
@@ -27,6 +34,7 @@ public class CourtYard1 extends Courtyard {
         }
         @Override
         protected void interpolate(double frac) {
+            animState = this.getCurrentTime().toMillis();
             if (frac==0){addZombie(0);}
         }
     }

@@ -97,7 +97,7 @@
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="SAVE AND EXIT" textFill="#148a51">
+                        <Button mnemonicParsing="false" onMouseClicked="#save" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="SAVE AND EXIT" textFill="#148a51">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>

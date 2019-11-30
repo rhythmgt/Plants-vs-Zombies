@@ -11,21 +11,13 @@ import java.util.ArrayList;
 
 abstract class Zombie extends Character implements Serializable{
     private int status;
-    private int distanceRemaining;
-    private int speed;
-    protected Image moving1;
-    protected Image fightImage1;
-    protected Image fightImage2;
-    protected Image moving2;
-
+    protected String s1;
+    protected String s2;
+    protected String s3;
+    protected String s4;
+    protected double animState;
+    protected Plant[] enemies;
     protected LawnMover targetLandMover;
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
 
     public int getStatus() {
         return status;
@@ -33,14 +25,6 @@ abstract class Zombie extends Character implements Serializable{
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public int getDistanceRemaining() {
-        return distanceRemaining;
-    }
-
-    public void setDistanceRemaining(int distanceRemaining) {
-        this.distanceRemaining = distanceRemaining;
     }
 
     Zombie(int i, int maxhp, AnchorPane parent, Courtyard yard) {
@@ -59,7 +43,7 @@ abstract class Zombie extends Character implements Serializable{
             killMe();
         }
         if (hp<0.5*maxHp){
-            myImg.setImage(moving2);
+            myImg.setImage(new Image(s2));
         }
     }
 
@@ -75,10 +59,10 @@ abstract class Zombie extends Character implements Serializable{
         Transition t = new Transition() {
             {
                 if (getHp()<0.5*maxHp){
-                    myImg.setImage(fightImage2);
+                    myImg.setImage(new Image(s4));
                 }
                 else{
-                    myImg.setImage(fightImage1);
+                    myImg.setImage(new Image(s3));
                 }
                 setCycleDuration(Duration.seconds(1));
                 setCycleCount(INDEFINITE);
@@ -100,10 +84,10 @@ abstract class Zombie extends Character implements Serializable{
                     else{
                         this.stop();
                         if (hp<0.5*maxHp){
-                            myImg.setImage(moving2);
+                            myImg.setImage(new Image(s2));
                         }
                         else{
-                            myImg.setImage(moving1);
+                            myImg.setImage(new Image(s1));
                         }
                         myanimation.play();
                     }
@@ -116,18 +100,19 @@ abstract class Zombie extends Character implements Serializable{
         private double position;
         private double difference;
         private Plant[] myEnemies;
-        moveZombieAnimation(double startPoint, double endPoint, Plant[] Enemies){
+        moveZombieAnimation(double startPoint, double endPoint){
             setCycleDuration(Duration.seconds(50));
             position = startPoint;
             difference =endPoint-startPoint;
-            myEnemies = Enemies;
+            myEnemies = enemies;
 
         }
 
         @Override
         protected void interpolate(double frac) {
-
-            myImg.setLayoutX(position + (difference*frac));
+            animState = this.getCurrentTime().toMillis();
+            myX = position + (difference*frac);
+            myImg.setLayoutX(myX);
             if (myImg.getLayoutX()<318){
                 System.out.println("YOU LOST");
                 myCourtyard.gameLost();
@@ -155,5 +140,23 @@ abstract class Zombie extends Character implements Serializable{
 
             }
         }
+
+
+    }
+
+    public void restoreMe(AnchorPane pn, ArrayList<Transition> anim){
+        myParent = pn;
+        myImg = new ImageView(s0);
+        myImg.setLayoutX(myX);
+        myImg.setLayoutY(myY);
+        myParent.getChildren().add(myImg);
+
+        myanimation= this.new moveZombieAnimation(myImg.getLayoutX(), myImg.getLayoutX()-900);
+
+        myanimation.setCycleCount(1);
+        myanimation.playFrom(new Duration(animState));
+        anim.add(myanimation);
+
+        //addAnimation
     }
 }

@@ -15,11 +15,32 @@ public class CherryBomb extends Plant {
     private ArrayList<CopyOnWriteArrayList<Zombie>> Enemies;
     CherryBomb(int row, int col,double i, double j, AnchorPane parent, Courtyard yard, ArrayList<CopyOnWriteArrayList<Zombie>> al) {
         super(row, col, parent, yard, 100);
-        myImg = new ImageView("/sample/images/plants/bomb0.gif");
-        myImg.setLayoutX(i-60);
-        myImg.setLayoutY(j-30);
+        s0 = "/sample/images/plants/bomb0.gif";
+        myImg = new ImageView(s0);
+        myX = i-60;
+        myY = j-30;
+        myImg.setLayoutX(myX);
+        myImg.setLayoutY(myY);
         Enemies = al;
         parent.getChildren().add(myImg);
+        ExplodeTransition t =new ExplodeTransition();
+        t.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                killMe();
+            }
+        });
+
+        t.play();
+    }
+
+    @Override
+    void restoreMe(AnchorPane pane, ArrayList<Transition> anim) {
+        myParent = pane;
+        myImg = new ImageView(s0);
+        myImg.setLayoutX(myX);
+        myImg.setLayoutY(myY);
+        myParent.getChildren().add(myImg);
         ExplodeTransition t =new ExplodeTransition();
         t.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
@@ -40,6 +61,7 @@ public class CherryBomb extends Plant {
         @Override
         protected void interpolate(double frac) {
             if (state==1 && (frac>=0.33 || frac<0.4)){
+
                 myImg.setImage(new Image("/sample/images/plants/bomb1.gif"));
                 state = 2;
             }

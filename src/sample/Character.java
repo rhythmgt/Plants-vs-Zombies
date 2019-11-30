@@ -11,10 +11,14 @@ public abstract class Character implements Serializable {
         protected int hp;
         protected int maxHp;
         private final int row;
-        protected ImageView myImg;
-        protected AnchorPane myParent;
+        protected transient ImageView myImg;
+        protected transient AnchorPane myParent;
         protected Courtyard myCourtyard;
-    protected Transition myanimation;
+        protected double myX;
+        protected double myY;
+        protected String s0;
+
+        protected transient Transition myanimation;
 
     public void setMyanimation(Transition myanimation) {
         this.myanimation = myanimation;
@@ -49,5 +53,7 @@ public abstract class Character implements Serializable {
         }
 
         public abstract void killMe();
+
+
 
 }

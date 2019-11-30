@@ -12,20 +12,25 @@ public class ConeHeadZombie extends Zombie implements Serializable {
     ConeHeadZombie(int ind, double i, double j, AnchorPane parent, ArrayList<Transition> animations, Plant[][] Enemies, Courtyard courtYard) {
         super(ind, 200, parent, courtYard);
         targetLandMover = courtYard.getLawnMovers()[ind];
-        myImg = new ImageView("/sample/images/zombies/ConeheadZombie.gif");
-        moving1 = new Image("/sample/images/zombies/ConeheadZombie.gif");
-        moving2 = new Image("/sample/images/zombies/zombie_normal.gif");
-        fightImage1 = new Image("/sample/images/zombies/ConeheadZombieAttack.gif");
-        fightImage2 = new Image("/sample/images/zombies/ZombieAttack.gif");
-        myImg.setLayoutX(i-33.5);
-        myImg.setLayoutY(j-20);
+        myParent = parent;
+        s0 = "/sample/images/zombies/ConeheadZombie.gif";
+        myImg = new ImageView(s0);
+        s1 = "/sample/images/zombies/ConeheadZombie.gif";
+        s2 = "/sample/images/zombies/zombie_normal.gif";
+        s3 = "/sample/images/zombies/ConeheadZombieAttack.gif";
+        s4 = "/sample/images/zombies/ZombieAttack.gif";
+        myX = i-33.5;
+        myY = j-20;
+        myImg.setLayoutX(myX);
+        myImg.setLayoutY(myY);
         myImg.setScaleY(0.8*myImg.getScaleY());
         parent.getChildren().add(myImg);
-        moveZombie(animations, Enemies);
+        enemies = Enemies[this.getRow()];
+        moveZombie(animations);
     }
 
-    void moveZombie(ArrayList<Transition> animations, Plant[][] Enemies){
-        myanimation= this.new moveZombieAnimation(myImg.getLayoutX(), myImg.getLayoutX()-900, Enemies[this.getRow()]);
+    void moveZombie(ArrayList<Transition> animations){
+        myanimation= this.new moveZombieAnimation(myImg.getLayoutX(), myImg.getLayoutX()-900);
         myanimation.setCycleCount(1);
         animations.add(myanimation);
         myanimation.play();

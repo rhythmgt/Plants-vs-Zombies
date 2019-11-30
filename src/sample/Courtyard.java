@@ -8,22 +8,24 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Courtyard {
+public abstract class Courtyard implements Serializable {
     private transient AnchorPane endMenu;
     private boolean isLocked;
-    private Label sunCount;
+    private transient Label sunCount;
     private int numSunToken;
     private LawnMover[] lawnMovers;
     private volatile Plant[][] plants;
     private volatile ArrayList<CopyOnWriteArrayList<Zombie>> zombies;
     protected double[] mybounds = new double[]{318.0, 427.0, 514.0, 625.0, 730.0, 825.0, 934.0, 1027.0, 1135.0, 1254.0};
     protected double[] vertBounds;
-    private final AnchorPane myParent;
-    protected ArrayList<Transition> myAnimations;
+    protected double animState;
+    private transient AnchorPane myParent;
+    protected transient ArrayList<Transition> myAnimations;
     private int getPlantingPosition(double d){
         if (d<mybounds[0]){
             return -1;
@@ -152,7 +154,7 @@ public class Courtyard {
     }
     public void addZombie(int k){
         double y1 = (vertBounds[k+1] + vertBounds[k])/2;
-        Zombie NZ = new ConeHeadZombie(k, 1216, y1-65, myParent, myAnimations, plants, this);
+        Zombie NZ = new NormalZombie(k, 1216, y1-65, myParent, myAnimations, plants, this);
         addZombieToList(NZ,0);
 
     }
@@ -247,4 +249,36 @@ public class Courtyard {
         endMenu.toFront();
     }
 
+
+
+    public void reInitialize(AnchorPane pn, Label TokenValue, AnchorPane menu, ArrayList<Transition> anim){
+        myParent = pn;
+        sunCount = TokenValue;
+        this.endMenu = menu;
+        myAnimations = anim;
+        for (Plant[] i : plants){
+            for (Plant j : i){
+                if (j!= null){
+                    j.restoreMe(pn, myAnimations);
+                }
+            }
+        }
+        for (CopyOnWriteArrayList<Zombie> zmL : zombies){
+            for (Zombie z : zmL){
+                if (z!=null){
+                    z.restoreMe(pn, myAnimations);
+                }
+            }
+        }
+        for (LawnMover lm : lawnMovers){
+            if (lm!=null){
+                lm.restoreMe(pn);
+            }
+        }
+        sunGenerator();
+        restoreZombieCreator();
+        sunCount.setText(Integer.toString(numSunToken));
+    }
+
+    abstract void restoreZombieCreator();
 }

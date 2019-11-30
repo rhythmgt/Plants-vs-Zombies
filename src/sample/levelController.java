@@ -22,9 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 
@@ -52,8 +50,9 @@ public class levelController implements  Initializable {
     public ImageView khopdi;
     public ImageView timer;
 	public AnchorPane winMenu;
-
+	protected Game myGame;
 	protected   Courtyard myCourtyard;
+	protected int myLevel =1 ;
 
 	public void startMeter(){
 
@@ -239,16 +238,71 @@ public class levelController implements  Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		animation = new ArrayList<>(0);
+		/*animation = new ArrayList<>(0);
 		myCourtyard = new CourtYard1(myParent, animation, sunCount, winMenu);
 
-		startMeter();
+		startMeter();*/
 	}
 	public void backtomenu(MouseEvent mouseEvent) throws IOException {
 		Parent root2 = FXMLLoader.load(getClass().getResource("selectLevel.fxml"));
 		((Node)mouseEvent.getSource()).getScene().setRoot(root2);
 		root2.getStylesheets().add(getClass().getResource("buttonStyle2.css").toString());
 	}
+	/*public void isNewGame(Boolean b, Game g){
+		if (b){
+			init(new MouseEvent());
+		}
+		else{
+			restore();
+		}
+	}*/
 
 
+	public void restore(Game g, Courtyard c) throws IOException, ClassNotFoundException {
+		/*myGame = g;
+		ObjectInputStream in = null;
+		String a  = "Hello.ser";
+		try{
+			in = new ObjectInputStream(new FileInputStream(a));
+			myCourtyard = (Courtyard) in.readObject();
+			animation = new ArrayList<>(0);
+			myCourtyard.reInitialize(myParent, sunCount, winMenu, animation);
+			System.out.println("loaded");
+		}
+		finally {
+			in.close();
+		}*/
+		myGame = g;
+		myCourtyard = c;
+		animation = new ArrayList<>(0);
+		myCourtyard.reInitialize(myParent, sunCount, winMenu, animation);
+
+	}
+
+	public void save(MouseEvent mouseEvent) throws IOException {
+		/*ObjectOutputStream out = null;
+		try{
+			String name = "Hello.ser";
+			out = new ObjectOutputStream(
+					new FileOutputStream(name)
+
+			);
+			out.writeObject(myCourtyard);
+		}
+		finally {
+			out.close();
+			((Stage) ((Node)mouseEvent.getSource()).getScene().getWindow()).close();
+
+		}*/
+		myGame.addCourtyard(myLevel, myCourtyard);
+		myGame.Serialize(mouseEvent);
+	}
+
+	public void init(Game g) {
+		myGame = g;
+		animation = new ArrayList<>(0);
+		myCourtyard = new CourtYard1(myParent, animation, sunCount, winMenu);
+		myGame.addCourtyard(myLevel, myCourtyard);
+		startMeter();
+	}
 }
