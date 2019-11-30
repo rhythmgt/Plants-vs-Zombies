@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ abstract class Zombie extends Character implements Serializable{
     }
 
     @Override
-    public void getAttacked(int i){
+    public void getAttacked(int i) throws IOException {
         this.hp -= i;
         if (hp<=0){
             killMe();
@@ -48,7 +49,7 @@ abstract class Zombie extends Character implements Serializable{
     }
 
     @Override
-    public void killMe(){
+    public void killMe() throws IOException {
         setHp(0);
         myParent.getChildren().remove(myImg);
         myanimation.stop();
@@ -77,7 +78,11 @@ abstract class Zombie extends Character implements Serializable{
                             myanimation.play();
                         }
                         else{
-                            p.getAttacked(10);
+                            try {
+                                p.getAttacked(10);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             System.out.println("attacking");
                         }
                     }

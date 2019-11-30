@@ -9,17 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.*;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.*;
@@ -49,6 +45,7 @@ public class levelController implements  Initializable {
 	public Timer tSun ;
     public ImageView khopdi;
     public ImageView timer;
+	public AnchorPane endMenu;
 	public AnchorPane winMenu;
 	protected Game myGame;
 	protected   Courtyard myCourtyard;
@@ -275,7 +272,7 @@ public class levelController implements  Initializable {
 		myGame = g;
 		myCourtyard = c;
 		animation = new ArrayList<>(0);
-		myCourtyard.reInitialize(myParent, sunCount, winMenu, animation);
+		myCourtyard.reInitialize(myParent, sunCount, endMenu, animation , winMenu);
 
 	}
 
@@ -301,7 +298,7 @@ public class levelController implements  Initializable {
 	public void init(Game g) {
 		myGame = g;
 		animation = new ArrayList<>(0);
-		myCourtyard = new CourtYard1(myParent, animation, sunCount, winMenu);
+		myCourtyard = new CourtYard1(myParent, animation, sunCount, endMenu , winMenu);
 		myGame.addCourtyard(myLevel, myCourtyard);
 		startMeter();
 	}

@@ -4,6 +4,7 @@ import javafx.animation.Transition;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 public abstract class Character implements Serializable {
@@ -45,14 +46,14 @@ public abstract class Character implements Serializable {
             row = i ;
         }
 
-        public void getAttacked(int i){
+        public void getAttacked(int i) throws IOException {
             this.hp -= i;
             if (hp<=0){
                 killMe();
             }
         }
 
-        public abstract void killMe();
+        public abstract void killMe() throws IOException;
 
 
 

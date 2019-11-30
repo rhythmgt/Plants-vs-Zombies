@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -78,7 +79,12 @@ public class CherryBomb extends Plant {
                 for (CopyOnWriteArrayList<Zombie> enemyList : Enemies){
                     for (Zombie enemy : enemyList){
                         if (myImg.getBoundsInParent().intersects(enemy.getImage().getBoundsInParent())){
-                        enemy.killMe();}
+                            try {
+                                enemy.killMe();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 }
                 state = 5;

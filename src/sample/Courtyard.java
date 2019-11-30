@@ -2,12 +2,15 @@ package sample;
 
 import javafx.animation.Animation;
 import javafx.animation.Transition;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,6 +18,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class Courtyard implements Serializable {
     private transient AnchorPane endMenu;
+    protected transient AnchorPane winMenu;
     private boolean isLocked;
     private transient Label sunCount;
     private int numSunToken;
@@ -24,6 +28,7 @@ public abstract class Courtyard implements Serializable {
     protected double[] mybounds = new double[]{318.0, 427.0, 514.0, 625.0, 730.0, 825.0, 934.0, 1027.0, 1135.0, 1254.0};
     protected double[] vertBounds;
     protected double animState;
+    protected int animationState ;
     private transient AnchorPane myParent;
     protected transient ArrayList<Transition> myAnimations;
     private int getPlantingPosition(double d){
@@ -59,7 +64,7 @@ public abstract class Courtyard implements Serializable {
         return this.numSunToken;
     }
 
-    Courtyard(int numRows, AnchorPane AP, ArrayList<Transition> anim, Label TokenValue, AnchorPane menu){
+    Courtyard(int numRows, AnchorPane AP, ArrayList<Transition> anim, Label TokenValue, AnchorPane menu ){
         sunCount = TokenValue;
         lawnMovers = new LawnMover[numRows];
         endMenu = menu;
@@ -158,10 +163,23 @@ public abstract class Courtyard implements Serializable {
         addZombieToList(NZ,0);
 
     }
-    public  void removeZombie(int i, Zombie z){
+    public  void removeZombie(int i, Zombie z) throws IOException {
 
             zombies.get(i).remove(z);
             System.out.println("Zombie Removed");
+            if(animationState==0){
+                gamewon();
+            }
+    }
+
+    public void gamewon() throws IOException {
+        System.out.println("GAME WON");
+        for(int i=0 ; i<myAnimations.size() ; i++)
+            if(myAnimations.get(i).getStatus() == Animation.Status.RUNNING)
+                myAnimations.get(i).stop();
+        winMenu.setVisible(true);
+        winMenu.toFront();
+
     }
 
     public void removePlant(int i, int j){
@@ -245,13 +263,12 @@ public abstract class Courtyard implements Serializable {
             if(myAnimations.get(i).getStatus() == Animation.Status.RUNNING)
                 myAnimations.get(i).stop();
         endMenu.setVisible(true);
-
         endMenu.toFront();
     }
 
 
 
-    public void reInitialize(AnchorPane pn, Label TokenValue, AnchorPane menu, ArrayList<Transition> anim){
+    public void reInitialize(AnchorPane pn, Label TokenValue, AnchorPane menu, ArrayList<Transition> anim , AnchorPane winMenu){
         myParent = pn;
         sunCount = TokenValue;
         this.endMenu = menu;

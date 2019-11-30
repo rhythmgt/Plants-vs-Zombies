@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -32,11 +33,15 @@ public class peaAnimation extends Transition {
             myshape.setVisible(true);
         }
         myshape.setLayoutX(position + (difference * frac));
-        isCollided();
+        try {
+            isCollided();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    void isCollided() {
+    void isCollided() throws IOException {
 
         for (Zombie myenemy : myenemies){
             if (myshape.getBoundsInParent().intersects(myenemy.getImage().getBoundsInParent())) {
