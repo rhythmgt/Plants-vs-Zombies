@@ -102,7 +102,20 @@ public class Courtyard {
                         if (numSunToken>=50){
                     Plant sunflower = new SunFlower(vertpos-1, pos-1,x2,y2-65, myParent, this);
                     addPlantToList(sunflower, vertpos-1, pos-1);
-
+                    Transition t = new Transition() {
+                        {
+                            this.setCycleCount(INDEFINITE);
+                            this.setCycleDuration(Duration.seconds(10));
+                        }
+                        @Override
+                        protected void interpolate(double frac) {
+                            if (frac==0){
+                                SunToken st = new SunToken(x2,y2-65,y2-75);
+                            }
+                        }
+                    };
+                    t.play();
+                    sunflower.setMyanimation(t);
                         changeSunValue(-50);}
 
                     break;
@@ -189,7 +202,7 @@ public class Courtyard {
         numSunToken += i;
         sunCount.setText(Integer.toString(numSunToken));
     }
-    private class SunToken {
+    public class SunToken {
         Button myImage;
         SunToken(double x, double ystart, double yend){
             myImage = new Button();

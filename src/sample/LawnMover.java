@@ -29,6 +29,8 @@ public class LawnMover {
         myImg = new ImageView("/sample/images/landMower.png");
         myImg.setLayoutX(220.0);
         myImg.setLayoutY(y);
+        myImg.setScaleX(myImg.getScaleX()/2);
+        myImg.setScaleY(myImg.getScaleY()/2);
         AP.getChildren().add(myImg);
         myImg.setVisible(true);
         zombiesToKill = zmb.get(r);
@@ -65,6 +67,7 @@ public class LawnMover {
                 if (enemy!=null && myImg.getBoundsInParent().intersects(enemy.getImage().getBoundsInParent())){
                     enemy.killMe();
                     System.out.println("Zombie Killed");
+                    enemy = null;
                 }
             }
         }

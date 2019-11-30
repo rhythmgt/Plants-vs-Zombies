@@ -16,7 +16,8 @@ public class NormalZombie extends Zombie implements Serializable {
         myParent = parent;
         myImg = new ImageView("/sample/images/zombies/zombie.gif");
         myImg.setLayoutX(i-33.5);
-        myImg.setLayoutY(j);
+        myImg.setLayoutY(j-20);
+        myImg.setScaleY(0.8*myImg.getScaleY());
         parent.getChildren().add(myImg);
         moveZombie(animations, Enemies);
     }

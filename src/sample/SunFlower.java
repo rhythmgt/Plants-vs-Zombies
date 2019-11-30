@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Transition;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -13,5 +14,6 @@ public class SunFlower extends Plant implements Serializable {
         myImg.setLayoutX(i-33.5);
         myImg.setLayoutY(j);
         parent.getChildren().add(myImg);
+
     }
 }

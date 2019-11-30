@@ -31,6 +31,7 @@ public  abstract class Plant extends Character implements Serializable {
 
                 @Override
         public void killMe(){
+            setHp(0);
                 if (myanimation!= null){
                         myanimation.stop();
                 }

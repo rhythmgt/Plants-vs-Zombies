@@ -15,7 +15,12 @@ public abstract class Character implements Serializable {
         protected AnchorPane myParent;
         protected Courtyard myCourtyard;
     protected Transition myanimation;
-        public ImageView getImage(){
+
+    public void setMyanimation(Transition myanimation) {
+        this.myanimation = myanimation;
+    }
+
+    public ImageView getImage(){
             return myImg;
         }
 

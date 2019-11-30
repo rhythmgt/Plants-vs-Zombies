@@ -45,7 +45,7 @@ abstract class Zombie extends Character implements Serializable{
 
     @Override
     public void killMe(){
-
+        setHp(0);
         myParent.getChildren().remove(myImg);
         myanimation.stop();
         myCourtyard.removeZombie(getRow(),this);
@@ -60,9 +60,17 @@ abstract class Zombie extends Character implements Serializable{
             @Override
             protected void interpolate(double frac) {
                 if (frac==0){
-                    if (p!=null && p.getHp()>0)
-                    {p.getAttacked(10);
-                    System.out.println("attacking");}
+                    if (p!=null){
+                        if (p.getHp()<=0){
+                            //p = null;
+                            this.stop();
+                            myanimation.play();
+                        }
+                        else{
+                            p.getAttacked(10);
+                            System.out.println("attacking");
+                        }
+                    }
                     else{
                         this.stop();
                         myanimation.play();
