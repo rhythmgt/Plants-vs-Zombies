@@ -61,8 +61,8 @@ public class LawnMover implements Serializable {
         myImg = new ImageView(s0);
         myImg.setLayoutX(myX);
         myImg.setLayoutY(myY);
-        myImg.setLayoutX(mywidth);
-        myImg.setLayoutY(myheight);
+        myImg.setScaleX(mywidth);
+        myImg.setScaleY(myheight);
         myParent.getChildren().add(myImg);
         //addAnimation
     }

@@ -169,15 +169,20 @@ public abstract class Courtyard implements Serializable {
         double y1 = (vertBounds[k+1] + vertBounds[k])/2;
 
         Zombie NZ = new NormalZombie(k, 1216, y1-65, myParent, myAnimations, plants, this);
-        addZombieToList(NZ,0);
+        addZombieToList(NZ,k);
 
     }
     public  void removeZombie(int i, Zombie z) throws IOException {
 
             zombies.get(i).remove(z);
             System.out.println("Zombie Removed "+zombies.size()+"  anim  : "+animationState);
-            if(animationState==0 && zombies.size()==0){
-                gamewon();
+            if(animationState==0){
+                Boolean b = true;
+                for (CopyOnWriteArrayList<Zombie> zl : zombies){
+                    b = b && (zl.size()==0);
+                }
+                if (b){
+                gamewon();}
             }
     }
 
@@ -187,7 +192,7 @@ public abstract class Courtyard implements Serializable {
             if(myAnimations.get(i).getStatus() == Animation.Status.RUNNING)
                 myAnimations.get(i).stop();
         winMenu.setVisible(true);
-        winMenu.setVisible(true);
+
         winMenu.toFront();
 
     }
@@ -282,6 +287,7 @@ public abstract class Courtyard implements Serializable {
         myParent = pn;
         sunCount = TokenValue;
         this.endMenu = menu;
+        this.winMenu = winMenu;
         myAnimations = anim;
         for (Plant[] i : plants){
             for (Plant j : i){

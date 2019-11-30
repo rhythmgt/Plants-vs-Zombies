@@ -24,7 +24,7 @@ public class Level5Controller extends levelController {
         myGame = g;
         animation = new ArrayList<>(0);
         myCourtyard = new CourtYard5(myParent, animation, sunCount, endMenu , winMenu);
-        this.myLevel = 2;
+        this.myLevel = 5;
         myGame.addCourtyard(myLevel, myCourtyard);
         startMeter();
     }
