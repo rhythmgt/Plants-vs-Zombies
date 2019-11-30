@@ -94,7 +94,7 @@
             <children>
                 <ImageView fitHeight="363.0" fitWidth="580.0">
                 <image>
-                    <Image url="@images/gameOver2.jpg" />
+                    <Image url="@images/boards/gameOver.png" />
                 </image>
                 </ImageView>
                 <VBox depthTest="ENABLE" layoutX="411.0" layoutY="67.0" prefHeight="230.0" prefWidth="143.0">
