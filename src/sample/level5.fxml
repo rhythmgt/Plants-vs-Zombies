@@ -77,29 +77,24 @@
                 <Insets />
             </opaqueInsets>
         </AnchorPane>
-        <AnchorPane fx:id="menu" layoutX="574.0" layoutY="204.0" prefHeight="314.0" prefWidth="232.0" style="-fx-background-color: LIGHTSTEELBLUE; " visible="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <AnchorPane fx:id="menu" layoutX="574.0" layoutY="204.0" prefHeight="314.0" prefWidth="232.0"  visible="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
             <children>
-                <ImageView fitHeight="316.0" fitWidth="231.0">
-                    <image>
-                        <Image url="@images/boards/b2.png" />
-                    </image>
-                </ImageView>
                 <VBox depthTest="ENABLE" layoutX="45.0" layoutY="42.0" prefHeight="230.0" prefWidth="143.0">
                     <children>
                         <Button depthTest="ENABLE" mnemonicParsing="false" onMouseClicked="#resumeGame" prefHeight="77.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="BACK TO GAME" textAlignment="JUSTIFY" textFill="#347c2c">
                             <font>
-                                <Font name="System Bold" size="15.0" />
+                                <Font name="System Bold" size="13.0" />
                             </font>
 
                         </Button>
                         <Button mnemonicParsing="false" onMouseClicked="#restartLevel" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="RESTART LEVEL" textFill="#148a51">
                             <font>
-                                <Font name="System Bold" size="15.0" />
+                                <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
                         <Button mnemonicParsing="false" onMouseClicked="#save" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="SAVE AND EXIT" textFill="#148a51">
                             <font>
-                                <Font name="System Bold" size="15.0" />
+                                <Font name="System Bold" size="13.0" />
                             </font>
                         </Button>
 
@@ -123,7 +118,7 @@
                 </ImageView>
                 <VBox depthTest="ENABLE" layoutX="411.0" layoutY="67.0" prefHeight="230.0" prefWidth="143.0">
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#restartLevel" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="RESTART LEVEL" textFill="#148a51">
+                        <Button mnemonicParsing="false" onMouseClicked="#nextLevel" prefHeight="75.0" prefWidth="143.0" style="-fx-background-color: DARKGRAY; -fx-border-color: DIMGREY; -fx-border-width: 4;" stylesheets="@effects.css" text="RESTART LEVEL 5" textFill="#148a51">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
